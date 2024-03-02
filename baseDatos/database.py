@@ -191,6 +191,7 @@ class Database():
             db_connection.close()
 
 
+
     def select_limite(self, usuario):
         try:
             db_connection = self.get_conexion()
