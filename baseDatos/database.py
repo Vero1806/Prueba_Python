@@ -1,5 +1,8 @@
 import pymysql
-
+from baseDatos.usuario import Usuario
+from baseDatos.transacciones import Transaccion
+from baseDatos.categorias import Categoria
+from baseDatos.limites import Limite
 
 class Database():
 
@@ -12,7 +15,7 @@ class Database():
             database='bfd7fdiocr7zh4l7xw9b'
         )
 
-    def insert_usuario(self, usuario):
+    def insert_usuario(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -21,8 +24,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('INSERT INTO usuarios (nombre, apellidos, correo, contrasenna) VALUES (%s, %s, %s, %s)',
-                            (usuario.nombre(), usuario.apellidos(), usuario.correo(), usuario.contrasenna())))
+            cursor.execute('INSERT INTO usuarios (nombre, apellidos, correo, contrasenna) VALUES (%s, %s, %s, %s)',
+                            (usuario.nombre, usuario.apellidos, usuario.correo, usuario.contrasenna))
             db_connection.commit()
 
         except Exception as e:
@@ -33,7 +36,7 @@ class Database():
             db_connection.close()
 
 
-    def select_usuario(self, usuario):
+    def select_usuario(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -42,8 +45,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('SELECT idusuario, nombre, apellidos, correo, contrasenna, saldo from usuarios where correo = %s and contrasenna = %s',
-                            (usuario.correo(), usuario.contrasenna())))
+            cursor.execute('SELECT idusuario, nombre, apellidos, correo, contrasenna, saldo from usuarios where correo = %s and contrasenna = %s',
+                            (usuario.correo, usuario.contrasenna))
             resultado = cursor.fetchone()
 
         except Exception as e:
@@ -57,7 +60,7 @@ class Database():
 
 
 
-    def insert_categoria(self, categoria):
+    def insert_categoria(self, categoria: Categoria):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -66,8 +69,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('INSERT INTO categoria (nombre, idusuario) VALUES (%s, %s)',
-                            (categoria.nombre(), categoria.idusuario())))
+            cursor.execute('INSERT INTO categoria (nombre, idusuario) VALUES (%s, %s)',
+                            (categoria.nombre, categoria.idusuario))
             db_connection.commit()
 
         except Exception as e:
@@ -78,7 +81,7 @@ class Database():
             db_connection.close()
 
 
-    def select_categorias(self, usuario):
+    def select_categorias(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -87,8 +90,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('SELECT nombre from categorias where idusuario = %s',
-                            (usuario.idusuario())))
+            cursor.execute('SELECT nombre from categorias where idusuario = %s',
+                            (usuario.idusuario))
             resultado = cursor.fetchall()
 
         except Exception as e:
@@ -101,7 +104,7 @@ class Database():
         return resultado
 
 
-    def insert_transaccion(self, transaccion):
+    def insert_transaccion(self, transaccion: Transaccion):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -110,8 +113,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('INSERT INTO transacciones (idusuario, idcategoria, concepto, cantidad, fecha) VALUES (%s, %s, %s, %s, CURDATE());',
-                            (transaccion.idusuario, transaccion.idcategoria, transaccion.concepto, transaccion.cantidad)))
+            cursor.execute('INSERT INTO transacciones (idusuario, idcategoria, concepto, cantidad, fecha) VALUES (%s, %s, %s, %s, CURDATE());',
+                            (transaccion.idusuario, transaccion.idcategoria, transaccion.concepto, transaccion.cantidad))
             db_connection.commit()
 
         except Exception as e:
@@ -122,7 +125,7 @@ class Database():
             db_connection.close()
 
 
-    def select_transacciones(self, usuario):
+    def select_transacciones(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -131,9 +134,9 @@ class Database():
             return e
 
         try:
-            cursor.execute(('SELECT categorias.nombre, transacciones.concepto, transacciones.cantidad, transacciones.fecha from transacciones '
+            cursor.execute('SELECT categorias.nombre, transacciones.concepto, transacciones.cantidad, transacciones.fecha from transacciones '
                             'inner join categorias on transacciones.idcategoria = categorias.idcategoria where transacciones.idusuario = %s',
-                            (usuario.idusuario())))
+                            (usuario.idusuario))
             resultado = cursor.fetchall()
 
         except Exception as e:
@@ -146,7 +149,7 @@ class Database():
         return resultado
 
 
-    def total_transacciones(self, usuario):
+    def total_transacciones(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -155,8 +158,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('SELECT SUM(cantidad) FROM transacciones WHERE idusuario = %s',
-                            (usuario.idusuario())))
+            cursor.execute('SELECT SUM(cantidad) FROM transacciones WHERE idusuario = %s',
+                            (usuario.idusuario))
             resultado = cursor.fetchall()
 
         except Exception as e:
@@ -169,8 +172,7 @@ class Database():
         return resultado
 
 
-
-    def insert_limite(self, limite):
+    def insert_limite(self, limite: Limite):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -179,8 +181,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('INSERT INTO limites (idusuario, limite) VALUES (%s, %s)',
-                            (limite.idusuario(), limite.limite())))
+            cursor.execute('INSERT INTO limites (idusuario, limite) VALUES (%s, %s)',
+                            (limite.idusuario, limite.limite))
             db_connection.commit()
 
         except Exception as e:
@@ -192,7 +194,7 @@ class Database():
 
 
 
-    def select_limite(self, usuario):
+    def select_limite(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -201,8 +203,8 @@ class Database():
             return e
 
         try:
-            cursor.execute(('SELECT limite.limite from limite where limite.idusuario = %s',
-                            (usuario.idusuario())))
+            cursor.execute('SELECT limite.limite from limite where limite.idusuario = %s',
+                            (usuario.idusuario))
             resultado = cursor.fetchone()
 
         except Exception as e:
@@ -213,4 +215,5 @@ class Database():
             db_connection.close()
 
         return resultado
+
 

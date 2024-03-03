@@ -16,6 +16,6 @@ class Limite:
     def limite(self):
         return self.__limite
 
-    @nombre.setter
+    @limite.setter
     def limite(self, nuevo_limite):
         self.__limite = nuevo_limite
