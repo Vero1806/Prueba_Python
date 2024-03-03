@@ -1,6 +1,0 @@
-import tkinter
-
-#class Registro():
-
-
-

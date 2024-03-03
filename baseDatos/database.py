@@ -7,7 +7,6 @@ from baseDatos.limites import Limite
 class Database():
 
     def get_conexion(self):
-
         return pymysql.connect(
             host='bfd7fdiocr7zh4l7xw9b-mysql.services.clever-cloud.com',
             user='uauvkfwlwjuus5kd',
@@ -43,11 +42,12 @@ class Database():
 
         except Exception as e:
             return e
+            result = None
 
         try:
             cursor.execute('SELECT idusuario, nombre, apellidos, correo, contrasenna, saldo from usuarios where correo = %s and contrasenna = %s',
                             (usuario.correo, usuario.contrasenna))
-            resultado = cursor.fetchone()
+            result = cursor.fetchone()
 
         except Exception as e:
             return e
@@ -56,7 +56,31 @@ class Database():
             cursor.close()
             db_connection.close()
 
-        return resultado
+        return result
+
+    def select_usuario_comprobar(self, usuario: Usuario):
+        try:
+            db_connection = self.get_conexion()
+            cursor = db_connection.cursor()
+
+        except Exception as e:
+            return e
+            result = None
+
+        try:
+            cursor.execute('SELECT idusuario, nombre, apellidos, correo, contrasenna, saldo from usuarios where correo = %s',
+                           (usuario.correo))
+            result = cursor.fetchone()
+            return result
+
+        except Exception as e:
+            return e
+
+        finally:
+            cursor.close()
+            db_connection.close()
+
+
 
 
 

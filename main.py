@@ -1,4 +1,6 @@
-from Interfaz.crearVentanas import VentanaPrincipal
+from Interfaz.VentanasRegistro import VentanaRegistro
+from Interfaz.VentanaLogin import VentanaLogin
 
-VentanaPrincipal()
+#VentanaRegistro()
 
+VentanaLogin()

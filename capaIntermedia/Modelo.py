@@ -12,6 +12,21 @@ class Modelo():
         db = Database()
         db.insert_usuario(usuario)
 
+    @staticmethod
+    def comprobarusuario(correo, contrasenna):
+        usuario = Usuario(correo, contrasenna)
+        db = Database()
+        return db.select_usuario(usuario)
+
+    @staticmethod
+    def comprobarusuarioexistente(correo):
+        usuario = Usuario(correo)
+        db = Database()
+        resultado = db.select_usuario_comprobar(usuario)
+        if resultado is not None:
+            return True  # Usuario existe
+        else:
+            return False
 
     @staticmethod
     def vertransacciones(idusuario):
