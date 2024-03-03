@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import util.generic as utl
 from Interfaz.VentanasRegistro import VentanaRegistro
+from Interfaz.VentanaPrincipal import VentanaPrincipal
 from capaIntermedia.Modelo import Modelo
 
 class VentanaLogin():
@@ -61,7 +62,15 @@ class VentanaLogin():
 
 
     def verificar(self):
-        Modelo().comprobarusuario(self.correo.get(), self.contrasenna.get())
+        usuario_correcto = Modelo().comprobarusuario(self.correo.get(), self.contrasenna.get())
+
+        if not usuario_correcto:
+            messagebox.showinfo(message="Entrando en la App", title="Mensaje")
+            VentanaPrincipal(usuario_correcto)
+            self.ventana.destroy()
+
+        else:
+            messagebox.showinfo(message="Usuario Incorrecto")
 
     def userRegister(self):
        VentanaRegistro()

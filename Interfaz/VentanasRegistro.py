@@ -61,10 +61,10 @@ class VentanaRegistro():
         self.ventana.mainloop()
 
     def register(self):
-        Modelo().crearusuario(self.correo.get(), self.contrasenna.get(), self.nombre.get(), self.apellidos.get())
-        usuario_existe = Modelo().comprobarusuarioexistente(self.correo)
+        usuario_existe = Modelo().comprobarusuarioexistente(self.correo.get())
 
-        if usuario_existe:
+        if not usuario_existe:
+            Modelo().crearusuario(self.correo.get(), self.contrasenna.get(), self.nombre.get(), self.apellidos.get())
             messagebox.showinfo(message="Se registro el usuario", title="Mensaje")
             self.ventana.destroy()
 

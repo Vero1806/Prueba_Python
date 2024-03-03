@@ -1,10 +1,11 @@
 class Usuario:
-    def __init__(self, correo = None, contrasenna = None, nombre = None, apellidos = None, idusuario = None):
+    def __init__(self, correo = None, contrasenna = None, nombre = None, apellidos = None, idusuario = None, saldo = None):
         self.__nombre = nombre
         self.__apellidos = apellidos
         self.__correo = correo
         self.__contrasenna = contrasenna
         self.__idusuario = idusuario
+        self.__saldo = saldo
 
     @property
     def nombre(self):
@@ -46,3 +47,11 @@ class Usuario:
     @idusuario.setter
     def idusuario(self, nueva_idusuario):
         self.__idusuario = nueva_idusuario
+
+    @property
+    def saldo(self):
+        return self.__saldo
+
+    @saldo.setter
+    def saldo(self, nuevo_saldo):
+        self.__saldo = nuevo_saldo

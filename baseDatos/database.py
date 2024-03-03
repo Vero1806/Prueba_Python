@@ -42,7 +42,6 @@ class Database():
 
         except Exception as e:
             return e
-            result = None
 
         try:
             cursor.execute('SELECT idusuario, nombre, apellidos, correo, contrasenna, saldo from usuarios where correo = %s and contrasenna = %s',
@@ -58,20 +57,19 @@ class Database():
 
         return result
 
-    def select_usuario_comprobar(self, usuario: Usuario):
+
+    def select_usuario_porcorreo(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
 
         except Exception as e:
             return e
-            result = None
 
         try:
-            cursor.execute('SELECT idusuario, nombre, apellidos, correo, contrasenna, saldo from usuarios where correo = %s',
+            cursor.execute('SELECT correo from usuarios where correo = %s',
                            (usuario.correo))
             result = cursor.fetchone()
-            return result
 
         except Exception as e:
             return e
@@ -80,7 +78,7 @@ class Database():
             cursor.close()
             db_connection.close()
 
-
+        return result
 
 
 
