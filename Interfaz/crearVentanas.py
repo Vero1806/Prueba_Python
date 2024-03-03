@@ -71,3 +71,4 @@ class VentanaPrincipal():
 
     def register(self):
         Modelo().crearusuario(self.correo.get(), self.contrasenna.get(), self.nombre.get(), self.apellidos.get())
+
