@@ -2,19 +2,12 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from capaIntermedia.Modelo import Modelo
 
-class VentanaRegistro():
+class VentanaRegistro:
 
     def __init__(self):
-        self.ventana = tk.Toplevel() #Porque no funcionas????
+        self.ventana = tk.Toplevel()
         self.ventana.title("Registrarse")
-        self.ventana.geometry('800x600')
-
-        # frame_logo
-        #frame_logo = tk.Frame(ventana, bd=0, width=200,
-        #                      relief=tk.SOLID, padx=10, pady=10, bg='#F87474')
-        #frame_logo.pack(side="left", expand=tk.YES, fill=tk.BOTH)
-        #label = tk.Label(frame_logo, image=logo, bg='#F87474')
-        #label.place(x=0, y=0, relwidth=1, relheight=1)
+        self.ventana.geometry('500x600')
 
         # frame_form
         frame_form = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=25, pady=10, bg='#fcfcfc')
@@ -69,4 +62,4 @@ class VentanaRegistro():
             self.ventana.destroy()
 
         else:
-            messagebox.showinfo(message="EL USUARIO YA ESTA REGISTRADO", title="Mensaje")
+            messagebox.showinfo(message="El correo " + self.correo.get() + " ya esta registrado", title="Mensaje")

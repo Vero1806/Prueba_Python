@@ -15,7 +15,13 @@ class Categoria:
     @property
     def idusuario(self):
         return self.__idusuario
+    @idusuario.setter
+    def idusuario(self, nuevo_idusuario):
+        self.__nombre = nuevo_idusuario
 
     @property
     def idcategoria(self):
         return self.__idcategoria
+    @idcategoria.setter
+    def idcategoria(self, nuevo_idcategorias):
+        self.__idcategorias = nuevo_idcategorias

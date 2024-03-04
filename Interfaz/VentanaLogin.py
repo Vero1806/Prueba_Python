@@ -5,11 +5,11 @@ from Interfaz.VentanasRegistro import VentanaRegistro
 from Interfaz.VentanaPrincipal import VentanaPrincipal
 from capaIntermedia.Modelo import Modelo
 
-class VentanaLogin():
+class VentanaLogin:
     def __init__(self):
         self.ventana = tk.Tk()
         self.ventana.title('Login')
-        self.ventana.geometry('800x500')
+        self.ventana.geometry('800x600')
         self.ventana.config(bg='#fcfcfc')
         self.ventana.resizable(width=0, height=0)
         utl.centrar_ventana(self.ventana, 800, 600)
@@ -48,12 +48,12 @@ class VentanaLogin():
         self.contrasenna.pack(fill=tk.X, padx=20, pady=10)
         self.contrasenna.config(show="*")
 
-        inicio = tk.Button(frame_form_fill, text="Iniciar sesion", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.verificar)
+        inicio = tk.Button(frame_form_fill, text="Iniciar sesión", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.verificar)
         inicio.pack(fill=tk.X, padx=20, pady=20)
         inicio.bind("<Return>", (lambda event: self.verificar()))
 
 
-        inicio = tk.Button(frame_form_fill, text="Registrar usuario", font=('Times', 15), bg='#fcfcfc', bd=0, fg="#3a7ff6", command=self.userRegister)
+        inicio = tk.Button(frame_form_fill, text="Registrar Usuario", font=('Times', 15), bg='#fcfcfc', bd=0, fg="#3a7ff6", command=self.userRegister)
         inicio.pack(fill=tk.X, padx=20, pady=20)
         inicio.bind("<Return>", (lambda event: self.userRegister()))
 
@@ -64,17 +64,15 @@ class VentanaLogin():
     def verificar(self):
         usuario_correcto = Modelo().comprobarusuario(self.correo.get(), self.contrasenna.get())
 
-        if not usuario_correcto:
-            messagebox.showinfo(message="Entrando en la App", title="Mensaje")
-            VentanaPrincipal(usuario_correcto)
+        if usuario_correcto:
+            usuario_conectado = Modelo().usuarioconectado(self.correo.get(), self.contrasenna.get())
+            messagebox.showinfo(message="Bienvenido " + usuario_conectado.nombre, title="Mensaje")
             self.ventana.destroy()
+            VentanaPrincipal(usuario_conectado)
+
 
         else:
-            messagebox.showinfo(message="Usuario Incorrecto")
+            messagebox.showinfo(message="Usuario o contraseña Incorrecto", title="Mensaje")
 
     def userRegister(self):
        VentanaRegistro()
-
-
-
-

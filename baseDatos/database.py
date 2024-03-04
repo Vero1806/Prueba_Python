@@ -68,7 +68,7 @@ class Database():
 
         try:
             cursor.execute('SELECT correo from usuarios where correo = %s',
-                           (usuario.correo))
+                           usuario.correo)
             result = cursor.fetchone()
 
         except Exception as e:

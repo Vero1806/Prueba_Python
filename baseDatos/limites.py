@@ -7,10 +7,17 @@ class Limite:
     @property
     def idlimite(self):
         return self.__idlimite
+    @idlimite.setter
+    def idlimite(self, nuevo_idlimite):
+        self.__limite = nuevo_idlimite
 
     @property
     def idusuario(self):
         return self.__idusuario
+
+    @idusuario.setter
+    def idusuario(self, nuevo_idusuario):
+        self.__limite = nuevo_idusuario
 
     @property
     def limite(self):

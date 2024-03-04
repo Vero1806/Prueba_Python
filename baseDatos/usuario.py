@@ -1,5 +1,5 @@
 class Usuario:
-    def __init__(self, correo = None, contrasenna = None, nombre = None, apellidos = None, idusuario = None, saldo = None):
+    def __init__(self, correo, contrasenna = None, nombre = None, apellidos = None, idusuario = None, saldo = None):
         self.__nombre = nombre
         self.__apellidos = apellidos
         self.__correo = correo
@@ -7,10 +7,24 @@ class Usuario:
         self.__idusuario = idusuario
         self.__saldo = saldo
 
+
+    @property
+    def correo(self):
+        return self.__correo
+    @correo.setter
+    def correo(self, nuevo_correo):
+        self.__correo = nuevo_correo
+
+    @property
+    def contrasenna(self):
+        return self.__contrasenna
+    @contrasenna.setter
+    def contrasenna(self, nueva_contrasenna):
+        self.__contrasenna = nueva_contrasenna
+
     @property
     def nombre(self):
         return self.__nombre
-
     @nombre.setter
     def nombre(self, nuevo_nombre):
         self.__nombre = nuevo_nombre
@@ -22,22 +36,6 @@ class Usuario:
     @apellidos.setter
     def apellidos(self, nuevos_apellidos):
         self.__apellidos = nuevos_apellidos
-
-    @property
-    def correo(self):
-        return self.__correo
-
-    @correo.setter
-    def correo(self, nuevo_correo):
-        self.__correo = nuevo_correo
-
-    @property
-    def contrasenna(self):
-        return self.__contrasenna
-
-    @contrasenna.setter
-    def contrasenna(self, nueva_contrasenna):
-        self.__contrasenna = nueva_contrasenna
 
 
     @property

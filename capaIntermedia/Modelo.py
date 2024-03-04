@@ -32,21 +32,25 @@ class Modelo():
         else:
             return False
 
+    '''
+    @staticmethod
+    def traerusuario(correo, contrasenna):
+        usuario = Usuario(correo, contrasenna)
+        db = Database()
+        resultado = db.select_usuario(usuario)
+
+        return resultado
+    '''
     @staticmethod
     def usuarioconectado(correo, contrasenna):
         usuario = Usuario(correo, contrasenna)
         db = Database()
         resultado = db.select_usuario(usuario)
-        usuarioConectado = Usuario()
-        usuarioConectado.idusuario = resultado[0]
-        usuarioConectado.nombre = resultado[1]
-        usuarioConectado.apellidos = resultado[2]
-        usuarioConectado.correo = resultado[3]
-        usuarioConectado.contrasenna = resultado[4]
-        usuarioConectado.saldo = resultado[5]
-
-        return usuarioConectado
-
+        if resultado is not None:
+            usuarioConectado = Usuario(idusuario=resultado[0], nombre=resultado[1], apellidos=resultado[2], correo=resultado[3], contrasenna=resultado[4], saldo=resultado[5])
+            return usuarioConectado
+        else:
+            return None
     @staticmethod
     def vertransacciones(idusuario):
         usuario = Usuario()
@@ -54,8 +58,6 @@ class Modelo():
         db = Database()
         return db.select_transacciones(usuario)
 
-
-print(Modelo().vertransacciones(1))
 
 
 
