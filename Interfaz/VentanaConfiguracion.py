@@ -1,9 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
 import util.generic as utl
-from Interfaz.VentanasRegistro import VentanaRegistro
-from capaIntermedia.Modelo import Modelo
-from baseDatos.usuario import Usuario
 
 
 class VentanaConfiguración:

@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 import util.generic as utl
 from Interfaz.VentanasRegistro import VentanaRegistro
 from Interfaz.VentanaPrincipal import VentanaPrincipal
-from capaIntermedia.Modelo import Modelo
+from Interfaz.capaIntermedia.Modelo import Modelo
 
 class VentanaLogin:
     def __init__(self):

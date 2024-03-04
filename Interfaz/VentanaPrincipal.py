@@ -1,12 +1,10 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
 import util.generic as utl
 from Interfaz.VentanaLimite import VentanaLimite
 from Interfaz.VentanaTransacciones import VentanaTransacciones
 from Interfaz.VentanaCategorias import VentanaCategorias
 from Interfaz.VentanaConfiguracion import VentanaConfiguración
 from Interfaz.VentanaGastoIngreso import VentanaGastoIngreso
-from capaIntermedia.Modelo import Modelo
 from baseDatos.usuario import Usuario
 
 
