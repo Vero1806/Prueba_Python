@@ -69,7 +69,7 @@ class VentanaLogin:
             messagebox.showinfo(message="Bienvenido " + usuario_conectado.nombre, title="Mensaje")
             self.ventana.destroy()
 
-            root =tk.Tk()
+            root = tk.Tk()
             VentanaPrincipal(root, usuario_conectado)
             root.mainloop()
 
