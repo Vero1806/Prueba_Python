@@ -18,8 +18,12 @@ class VentanaLogin:
         # frame_logo
         frame_logo = tk.Frame(self.ventana, bd=0, width=200,relief=tk.SOLID, padx=10, pady=10, bg='#3a7ff6')
         frame_logo.pack(side="left", expand=tk.YES, fill=tk.BOTH)
-        label = tk.Label(frame_logo, image=logo, bg='#3a7ff6')
-        label.place(x=0, y=0, relwidth=1, relheight=1)
+
+            #label = tk.Label( text="ECO-GASTOS", font=('Times', 14), fg="#666a88", bg='#fcfcfc', anchor="w")
+            #label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        label_logo = tk.Label(frame_logo, image=logo, bg='#3a7ff6')
+        label_logo.place(x=0, y=0, relwidth=1, relheight=1)
 
         # frame_form
         frame_form = tk.Frame(self.ventana, bd=0,relief=tk.SOLID, bg='#fcfcfc')
@@ -29,7 +33,7 @@ class VentanaLogin:
         # frame_form_top
         frame_form_top = tk.Frame(frame_form, height=50, bd=0, relief=tk.SOLID, bg='black')
         frame_form_top.pack(side="top", fill=tk.X)
-        title = tk.Label(frame_form_top, text="Inicio de sesion", font=('Times', 30), fg="#666a88", bg='#fcfcfc', pady=50)
+        title = tk.Label(frame_form_top, text="Inicio de sesión", font=('Times', 30), fg="#666a88", bg='#fcfcfc', pady=50)
         title.pack(expand=tk.YES, fill=tk.BOTH)
         # end frame_form_top
 
@@ -37,7 +41,7 @@ class VentanaLogin:
         frame_form_fill = tk.Frame(frame_form, height=50,  bd=0, relief=tk.SOLID, bg='#fcfcfc')
         frame_form_fill.pack(side="bottom", expand=tk.YES, fill=tk.BOTH)
 
-        etiqueta_correo = tk.Label(frame_form_fill, text="Usuario", font=('Times', 14), fg="#666a88", bg='#fcfcfc', anchor="w")
+        etiqueta_correo = tk.Label(frame_form_fill, text="Correo electrónico", font=('Times', 14), fg="#666a88", bg='#fcfcfc', anchor="w")
         etiqueta_correo.pack(fill=tk.X, padx=20, pady=5)
         self.correo = ttk.Entry(frame_form_fill, font=('Times', 14))
         self.correo.pack(fill=tk.X, padx=20, pady=10)

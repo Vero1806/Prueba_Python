@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+from capaIntermedia import Modelo
 
 class VentanaGasto:
     def __init__(self, ventana, usuario):
@@ -40,4 +41,15 @@ class VentanaGasto:
 
 
     def realizarGasto(self):
-        pass
+        concepto = self.cuadro_concepto.get()
+        cantidad = self.cuadro_cantidad.get()
+        nombre_categoria = self.seleccion.get()
+        
+        gastoRealizado = Modelo().insertargasto(self.usuario, nombre_categoria, concepto, cantidad)
+
+        if gastoRealizado:
+            messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+            self.ventana.destroy()
+        else:
+            messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
+    

@@ -239,3 +239,26 @@ class Database():
         return resultado
 
 
+    def select_categoria_genericaYpropia(self, usuario : Usuario):
+
+        try:
+            db_connection = self.get_conexion()
+            cursor = db_connection.cursor()
+
+        except Exception as e:
+            return e
+        
+        try:
+            cursor.execute ('SELECT nombre FROM categorias UNION' 
+                            'SELECT nombre FROM categorias WHERE idusuario = %s',
+                            (usuario.idusuario))
+            resultado = cursor.fetchall()
+            
+        except Exception as e:
+                return e
+
+        finally:
+            cursor.close()
+            db_connection.close()
+
+        return resultado

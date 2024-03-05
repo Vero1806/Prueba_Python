@@ -84,8 +84,25 @@ class Modelo():
     def selectcategorias(usuario: Usuario):
         db = Database()
         resultado = db.select_categorias(usuario.idusuario)
+        
+        return resultado
+    
+    def verCategoriasCompleto(usuario: Usuario):
+        db = Database()
+        resultado = db.select_categoria_genericaYpropia(usuario.idusuario)
+        
+        return resultado
+
+
+    @staticmethod
+    def insertgasto(usuario: Usuario, nombreCategoria, concepto, cantidad):
+
+        gasto = Transaccion(usuario.idusuario, nombreCategoria, concepto, -float(cantidad))
+        db = Database()
+        resultado = db.insert_transaccion(gasto)
         if resultado is not None:
             return True
         else:
             return False
+
 

@@ -15,7 +15,7 @@ from capaIntermedia.Modelo import Modelo
 class VentanaPrincipal:
     def __init__(self, ventana, usuario: Usuario):
         self.ventana = ventana
-        self.ventana.title('Mi App de Gastos')
+        self.ventana.title('ECO-GASTOS')
         self.ventana.geometry('800x600')
         self.ventana.config(bg='#fcfcfc')
         self.ventana.resizable(width=0, height=0) #No permite cambiar el tamaño de la ventana
