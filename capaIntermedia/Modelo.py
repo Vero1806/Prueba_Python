@@ -32,15 +32,6 @@ class Modelo():
         else:
             return False
 
-    '''
-    @staticmethod
-    def traerusuario(correo, contrasenna):
-        usuario = Usuario(correo, contrasenna)
-        db = Database()
-        resultado = db.select_usuario(usuario)
-
-        return resultado
-    '''
     @staticmethod
     def usuarioconectado(correo, contrasenna):
         usuario = Usuario(correo, contrasenna)
@@ -51,6 +42,7 @@ class Modelo():
             return usuarioConectado
         else:
             return None
+
     @staticmethod
     def vertransacciones(usuario: Usuario):
         db = Database()
@@ -60,6 +52,16 @@ class Modelo():
             listaTran.append(f"Categoria: {elemento[0]}, Concepto: {elemento[1]}, Cantidad: {elemento[2]}, fecha {elemento[3]}")
 
         return listaTran
+
+    @staticmethod
+    def realizartransaccion(idusuario, idcategoria, concepto, cantidad):
+        transaccion = Transaccion(idusuario, idcategoria, concepto, cantidad)
+        db = Database()
+        resultado = db.insert_transaccion(transaccion)
+        if resultado is not None:
+            return True
+        else:
+            return False
 
 
     @staticmethod
@@ -87,13 +89,3 @@ class Modelo():
         else:
             return False
 
-
-
-
-'''
-    @staticmethod
-        def crearusuario(correo, contrasenna, nombre, apellidos):
-        usuario = Usuario(correo, contrasenna, nombre, apellidos)
-        db = Database()
-        db.insert_usuario(usuario)
-            '''

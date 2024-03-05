@@ -2,11 +2,12 @@ import tkinter as tk
 from tkinter import messagebox
 
 import util.generic as utl
+from Interfaz.VentanaIngreso import VentanaIngreso
 from Interfaz.VentanaLimite import VentanaLimite
 from Interfaz.VentanaTransacciones import VentanaTransacciones
 from Interfaz.VentanaCategorias import VentanaCategorias
-from Interfaz.VentanaConfiguracion import VentanaConfiguración
-from Interfaz.VentanaGastoIngreso import VentanaGastoIngreso
+from Interfaz.VentanaConfiguracion import VentanaConfiguracion
+from Interfaz.VentanaGasto import VentanaGasto
 from baseDatos.usuario import Usuario
 from capaIntermedia.Modelo import Modelo
 
@@ -14,7 +15,7 @@ from capaIntermedia.Modelo import Modelo
 class VentanaPrincipal:
     def __init__(self, ventana, usuario: Usuario):
         self.ventana = ventana
-        self.ventana.title('VentanaPrincipal')
+        self.ventana.title('Mi App de Gastos')
         self.ventana.geometry('800x600')
         self.ventana.config(bg='#fcfcfc')
         self.ventana.resizable(width=0, height=0) #No permite cambiar el tamaño de la ventana
@@ -25,7 +26,7 @@ class VentanaPrincipal:
         self.ventana.grid_rowconfigure(0, weight=1)
         self.ventana.grid_rowconfigure(1, weight=1)
         self.ventana.grid_rowconfigure(2, weight=3)
-        self.ventana.grid_rowconfigure(0, weight=3)
+        self.ventana.grid_rowconfigure(3, weight=3)
 
         self.usuario = usuario
 
@@ -40,14 +41,18 @@ class VentanaPrincipal:
 
         # frame_titulo 0,1
         frame_titulo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
-        frame_titulo.grid(row=0, column=1, sticky="NSEW")
+        frame_titulo.grid(row=0, column=1, pady=20, padx=20)
         # Label para el texto de bienvenida (Título)
-        label_titulo = tk.Label(frame_titulo, text=f"Menú Principal de {self.usuario.nombre}", font=('Helvetica', 18), bg='#fcfcfc', anchor="center")
-        label_titulo.grid(row=0, column=1, pady=40, padx=5, sticky="NSEW")
+        label_titulo = tk.Label(frame_titulo, text=f"{self.usuario.nombre}", font=('Helvetica', 20), bg='#fcfcfc', anchor="center")
+        label_titulo.grid(row=0, column=1, pady=20, padx=20)
 
-        #frame_vacio 0,2
-        frame_vacio = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
-        frame_vacio.grid(row=0, column=2, pady=20, padx=5)
+        #frame_configuracion 0,2
+        frame_configuracion = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
+        frame_configuracion.grid(row=0, column=2, padx=10, pady=10)
+        #boton_configuración
+        boton_configuracion = tk.Button(frame_configuracion, text="Configuración", font=('Times', 18), bg='#808080', bd=0, fg="#fff", command=self.configuracion)
+        boton_configuracion.pack(fill=tk.X, padx=10, pady=10)
+        boton_configuracion.bind("<Return>", (lambda event: self.configuracion()))
 
         #frame_saldo 1,1
         frame_saldo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
@@ -68,7 +73,7 @@ class VentanaPrincipal:
         frame_refrescar = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_refrescar.grid(row=2, column=1, padx=10, pady=10)
         #botón refrescar
-        boton_refrescar = tk.Button(frame_refrescar, text="Refrescar", font=('Times', 15), anchor="s", bg='red', bd=0, fg="#fff", command=self.refrescar)
+        boton_refrescar = tk.Button(frame_refrescar, text="Refrescar", font=('Times', 15), anchor="s", bg='#d5d247', bd=0, fg="#fff", command=self.refrescar)
         boton_refrescar.pack(fill=tk.X, padx=10, pady=10)
         boton_refrescar.bind("<Return>", (lambda event: self.refrescar()))
 
@@ -80,32 +85,33 @@ class VentanaPrincipal:
         boton_ver_transacciones.pack(fill=tk.X, padx=10, pady=10)
         boton_ver_transacciones.bind("<Return>", (lambda event: self.verTransacciones()))
 
-        #frame_verTransacciones 3,0
+        #frame_gasto 3,0
+        frame_gasto = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
+        frame_gasto.grid(row=3, column=0, padx=10, pady=10)
+        # boton_gasto
+        boton_gasto = tk.Button(frame_gasto, text="Agregar Gasto", font=('Times', 15), bg='red', bd=0, fg="#fff", command=self.gasto)
+        boton_gasto.pack(fill=tk.X, padx=10, pady=10)
+        boton_gasto.bind("<Return>", (lambda event: self.gasto()))
+
+        #frame_categorias 3,1
         frame_categorias = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
-        frame_categorias.grid(row=3, column=0, padx=10, pady=10)
-        # boton_transacciones
+        frame_categorias.grid(row=3, column=1, padx=10, pady=10)
+        # boton_categorias
         boton_categorias = tk.Button(frame_categorias, text="Categorías", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.categorias)
         boton_categorias.pack(fill=tk.X, padx=10, pady=10)
         boton_categorias.bind("<Return>", (lambda event: self.categorias()))
 
-        #frame_verTransacciones 3,1
-        frame_gastoIngreso = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
-        frame_gastoIngreso.grid(row=3, column=1, padx=10, pady=10)
-        # boton_transacciones
-        boton_gastoIngreso = tk.Button(frame_gastoIngreso, text="Agregar Gasto/Ingreso", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.gastoIngreso)
-        boton_gastoIngreso.pack(fill=tk.X, padx=10, pady=10)
-        boton_gastoIngreso.bind("<Return>", (lambda event: self.gastoIngreso()))
-
-        #frame_verTransacciones 3,2
-        frame_configuracion = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
-        frame_configuracion.grid(row=3, column=2, padx=10, pady=10)
-        # boton_transacciones
-        boton_configuracion = tk.Button(frame_configuracion, text="Configuración", font=('Times', 15), bg='#808080', bd=0, fg="#fff", command=self.configuracion)
-        boton_configuracion.pack(fill=tk.X, padx=10, pady=10)
-        boton_configuracion.bind("<Return>", (lambda event: self.configuracion()))
+        #frame_ingreso 3,2
+        frame_ingreso= tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
+        frame_ingreso.grid(row=3, column=2, padx=10, pady=10)
+        # boton_ingreso
+        boton_ingreso = tk.Button(frame_ingreso, text="Agregar Ingreso", font=('Times', 15), bg='#81ed2c', bd=0, fg="#fff", command=self.ingreso)
+        boton_ingreso.pack(fill=tk.X, padx=10, pady=10)
+        boton_ingreso.bind("<Return>", (lambda event: self.ingreso()))
 
     def establecerLiminte(self):
-        VentanaLimite()
+        self.newWindow = tk.Toplevel(self.ventana)
+        self.app = VentanaLimite(self.newWindow, self.usuario)
 
     def verTransacciones(self):
         self.newWindow = tk.Toplevel(self.ventana)
@@ -117,10 +123,16 @@ class VentanaPrincipal:
         self.app = VentanaCategorias(self.newWindow, self.usuario)
 
     def configuracion(self):
-        VentanaConfiguración()
+        self.newWindow = tk.Toplevel(self.ventana)
+        self.app = VentanaConfiguracion(self.newWindow, self.usuario)
 
-    def gastoIngreso(self):
-        VentanaGastoIngreso()
+    def gasto(self):
+        self.newWindow = tk.Toplevel(self.ventana)
+        self.app = VentanaGasto(self.newWindow, self.usuario)
+
+    def ingreso(self):
+        self.newWindow = tk.Toplevel(self.ventana)
+        self.app = VentanaIngreso(self.newWindow, self.usuario)
 
     def refrescar(self):
         esteUsuario = self.usuario

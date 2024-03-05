@@ -11,26 +11,28 @@ class VentanaCategorias:
         self.frame = tk.Frame(self.ventana)
         self.frame.pack()
 
+        label_nombre = tk.Label(self.frame, text="Categorias", font=('Helvetica', 20), anchor="w")
+        label_nombre.grid(row=0, column=0, pady=10, padx=10, columnspan=3)
 
         label_titulo = tk.Label(self.frame, text="Tus Categorias: ", font=('Helvetica', 15), anchor="e")
-        label_titulo.grid(row=0, column=0, pady=10, padx=10)
+        label_titulo.grid(row=1, column=0, pady=10, padx=10)
         cat = Modelo().vercategorias(usuario)
         for i, contenido in enumerate(cat):
             # Crear y agregar etiqueta al frame
             label_tran = tk.Label(self.frame, text=contenido, font=('Helvetica', 15), anchor="e")
-            label_tran.grid(row=i+1, column=0, pady=10, padx=10)
+            label_tran.grid(row=i+1, column=1, pady=10, padx=10)
 
 
 
-        label_titulo = tk.Label(self.frame, text="Crear Categoría: ", font=('Helvetica', 15), anchor="w")
-        label_titulo.grid(row=0, column=1, pady=10, padx=10)
+        label_titulo = tk.Label(self.frame, text="Crear Nueva Categoría: ", font=('Helvetica', 15), anchor="w")
+        label_titulo.grid(row=1, column=2, pady=10, padx=10)
 
         self.cuadro_texto = tk.Entry(self.frame, font=('Helvetica', 14), width=30)
-        self.cuadro_texto.grid(row=0, column=2, padx=10, pady=10)
+        self.cuadro_texto.grid(row=2, column=2, padx=20, pady=20)
 
 
         boton_agregarCategoria = tk.Button(self.frame, text='Agregar Categoria', command=self.insertarcategoria, font=('Helvetica', 15), bg='#3a7ff6', fg='#fff')
-        boton_agregarCategoria.grid(row=1, column=2, padx=10, pady=10)
+        boton_agregarCategoria.grid(row=3, column=2, padx=10, pady=10)
         boton_agregarCategoria.bind("<Return>", (lambda event: self.insertarcategoria()))
 
 
@@ -39,7 +41,7 @@ class VentanaCategorias:
         categoria_comprobar = Modelo.selectcategorias(self.usuario)
 
         if categoria_comprobar:
-            Modelo().insertcategorias(categoria_escrita,self.usuario)
+            Modelo().insertcategorias(categoria_escrita, self.usuario)
             messagebox.showinfo(message="La categoría ha sido creada correctamente", title="Mensaje")
             self.ventana.destroy()
 
