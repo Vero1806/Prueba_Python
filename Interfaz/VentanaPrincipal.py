@@ -140,4 +140,3 @@ class VentanaPrincipal:
         root = tk.Tk()
         VentanaPrincipal(root, esteUsuario)
         root.mainloop()
-
