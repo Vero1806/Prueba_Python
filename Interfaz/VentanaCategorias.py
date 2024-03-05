@@ -11,6 +11,7 @@ class VentanaCategorias:
         self.frame = tk.Frame(self.ventana)
         self.frame.pack()
 
+
         label_titulo = tk.Label(self.frame, text="Tus Categorias: ", font=('Helvetica', 15), anchor="e")
         label_titulo.grid(row=0, column=0, pady=10, padx=10)
         cat = Modelo().vercategorias(usuario)
@@ -38,8 +39,9 @@ class VentanaCategorias:
         categoria_comprobar = Modelo.selectcategorias(self.usuario)
 
         if categoria_comprobar:
-            Modelo().insertcategorias(categoria_escrita,self.usuario.idusuario)
+            Modelo().insertcategorias(categoria_escrita,self.usuario)
             messagebox.showinfo(message="La categoría ha sido creada correctamente", title="Mensaje")
-            self.frame.destroy()
+            self.ventana.destroy()
+
         else:
             messagebox.showinfo(message="La categoría ya existe en esta cuenta", title="Mensaje")
