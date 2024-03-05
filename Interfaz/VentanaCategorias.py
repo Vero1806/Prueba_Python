@@ -16,12 +16,11 @@ class VentanaCategorias:
 
         label_titulo = tk.Label(self.frame, text="Tus Categorias: ", font=('Helvetica', 15), anchor="e")
         label_titulo.grid(row=1, column=0, pady=10, padx=10)
-        cat = Modelo().verCategoriasCompleto(usuario)
-        for i, contenido in enumerate(cat):
+        cat = Modelo().verCategoriasCompletonombre(usuario)
+        for i, contenido in enumerate(f"Nombre: {cat}"):
             # Crear y agregar etiqueta al frame
             label_tran = tk.Label(self.frame, text=contenido, font=('Helvetica', 15), anchor="e")
             label_tran.grid(row=i+1, column=1, pady=10, padx=10)
-
 
 
         label_titulo = tk.Label(self.frame, text="Crear Nueva Categoría: ", font=('Helvetica', 15), anchor="w")

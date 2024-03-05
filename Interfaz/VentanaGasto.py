@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from capaIntermedia import Modelo
+from capaIntermedia.Modelo import Modelo
 
 class VentanaGasto:
     def __init__(self, ventana, usuario):
@@ -32,7 +32,8 @@ class VentanaGasto:
         self.cuadro_cantidad = tk.Entry(self.frame, font=('Helvetica', 14), width=30)
         self.cuadro_cantidad.grid(row=2, column=2, padx=10, pady=10)
 
-        self.seleccion = ttk.Combobox(self.frame, values = ["Alimentación", "Hogar", "Ocio"]) #Modificar para meter el array de nobres de categorias
+        self.seleccion = ttk.Combobox(self.frame)
+        self.seleccion['values'] = Modelo().verCategoriasCompletonombre(usuario) #Modificar para meter el array de nobres de categorias
         self.seleccion.grid(row=2, column=3, padx=10, pady=10)
 
         self.boton_gasto = tk.Button(self.frame, text="Realizar Gasto", font=('Helvetical', 15), bg='red', bd=0, fg="#fff", command=self.realizarGasto)
@@ -44,6 +45,7 @@ class VentanaGasto:
         concepto = self.cuadro_concepto.get()
         cantidad = self.cuadro_cantidad.get()
         nombre_categoria = self.seleccion.get()
+
         
         gastoRealizado = Modelo().insertargasto(self.usuario, nombre_categoria, concepto, cantidad)
 

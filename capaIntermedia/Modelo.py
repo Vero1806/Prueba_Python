@@ -4,6 +4,7 @@ from baseDatos.transacciones import Transaccion
 from baseDatos.categorias import Categoria
 from baseDatos.limites import Limite
 
+
 class Modelo():
 
     @staticmethod
@@ -38,7 +39,8 @@ class Modelo():
         db = Database()
         resultado = db.select_usuario(usuario)
         if resultado is not None:
-            usuarioConectado = Usuario(idusuario=resultado[0], nombre=resultado[1], apellidos=resultado[2], correo=resultado[3], contrasenna=resultado[4], saldo=resultado[5])
+            usuarioConectado = Usuario(idusuario=resultado[0], nombre=resultado[1], apellidos=resultado[2],
+                                       correo=resultado[3], contrasenna=resultado[4], saldo=resultado[5])
             return usuarioConectado
         else:
             return None
@@ -49,7 +51,8 @@ class Modelo():
         arrayTras = db.select_transacciones(usuario)
         listaTran = []
         for elemento in arrayTras:
-            listaTran.append(f"Categoria: {elemento[0]}, Concepto: {elemento[1]}, Cantidad: {elemento[2]}, fecha {elemento[3]}")
+            listaTran.append(
+                f"Categoria: {elemento[0]}, Concepto: {elemento[1]}, Cantidad: {elemento[2]}, fecha {elemento[3]}")
 
         return listaTran
 
@@ -63,7 +66,6 @@ class Modelo():
         else:
             return False
 
-
     @staticmethod
     def vercategorias(usuario: Usuario):
         db = Database()
@@ -71,8 +73,30 @@ class Modelo():
         listaCat = []
         for elemento in arrayCat:
             listaCat.append(f"Nombre: {elemento[0]}")
-
         return listaCat
+
+    @staticmethod
+    def verCategoriasCompletonombre(usuario: Usuario):
+        db = Database()
+        arrayCat = db.select_categoria_genericaYpropia(usuario)
+        listaCat_nombre = []
+        for elemento in arrayCat:
+            listaCat_nombre.append(elemento)
+
+        return listaCat_nombre
+
+    @staticmethod
+    def verCategoriasCompletoid(usuario: Usuario):
+        db = Database()
+        arrayCat = db.select_categoria_genericaYpropia(usuario)
+        listaCat_id = []
+
+        for elemento2 in arrayCat:
+            listaCat_id.append(elemento2[1])
+
+        return listaCat_id
+
+
 
     @staticmethod
     def insertcategorias(nombre, usuario: Usuario):
@@ -84,18 +108,11 @@ class Modelo():
     def selectcategorias(usuario: Usuario):
         db = Database()
         resultado = db.select_categorias(usuario.idusuario)
-        
-        return resultado
-    
-    def verCategoriasCompleto(usuario: Usuario):
-        db = Database()
-        resultado = db.select_categoria_genericaYpropia(usuario.idusuario)
-        
-        return resultado
 
+        return resultado
 
     @staticmethod
-    def insertgasto(usuario: Usuario, nombreCategoria, concepto, cantidad):
+    def insertargasto(usuario: Usuario, nombreCategoria, concepto, cantidad):
 
         gasto = Transaccion(usuario.idusuario, nombreCategoria, concepto, -float(cantidad))
         db = Database()
@@ -104,5 +121,3 @@ class Modelo():
             return True
         else:
             return False
-
-
