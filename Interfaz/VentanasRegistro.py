@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-from Interfaz.capaIntermedia.Modelo import Modelo
+from capaIntermedia.Modelo import Modelo
 
 class VentanaRegistro:
 

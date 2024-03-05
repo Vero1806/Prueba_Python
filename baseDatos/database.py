@@ -91,7 +91,7 @@ class Database():
             return e
 
         try:
-            cursor.execute('INSERT INTO categoria (nombre, idusuario) VALUES (%s, %s)',
+            cursor.execute('INSERT INTO categorias (nombre, idusuario) VALUES (%s, %s)',
                             (categoria.nombre, categoria.idusuario))
             db_connection.commit()
 

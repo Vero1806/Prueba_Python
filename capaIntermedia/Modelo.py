@@ -52,13 +52,48 @@ class Modelo():
         else:
             return None
     @staticmethod
-    def vertransacciones(idusuario):
-        usuario = Usuario()
-        usuario.idusuario = idusuario
+    def vertransacciones(usuario: Usuario):
         db = Database()
-        return db.select_transacciones(usuario)
+        arrayTras = db.select_transacciones(usuario)
+        listaTran = []
+        for elemento in arrayTras:
+            listaTran.append(f"Categoria: {elemento[0]}, Concepto: {elemento[1]}, Cantidad: {elemento[2]}, fecha {elemento[3]}")
+
+        return listaTran
+
+
+    @staticmethod
+    def vercategorias(usuario: Usuario):
+        db = Database()
+        arrayCat = db.select_categorias(usuario)
+        listaCat = []
+        for elemento in arrayCat:
+            listaCat.append(f"Nombre: {elemento[0]}")
+
+        return listaCat
+
+    @staticmethod
+    def insertcategorias(nombre, usuario: Usuario):
+        categoria = Categoria(nombre, usuario.idusuario)
+        db = Database()
+        db.insert_categoria(categoria)
+
+    @staticmethod
+    def selectcategorias(usuario: Usuario):
+        db = Database()
+        resultado = db.select_categorias(usuario.idusuario)
+        if resultado is not None:
+            return True
+        else:
+            return False
 
 
 
 
-
+'''
+    @staticmethod
+        def crearusuario(correo, contrasenna, nombre, apellidos):
+        usuario = Usuario(correo, contrasenna, nombre, apellidos)
+        db = Database()
+        db.insert_usuario(usuario)
+            '''

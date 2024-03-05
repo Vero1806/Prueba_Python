@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox
+
 import util.generic as utl
 from Interfaz.VentanaLimite import VentanaLimite
 from Interfaz.VentanaTransacciones import VentanaTransacciones
@@ -6,11 +8,12 @@ from Interfaz.VentanaCategorias import VentanaCategorias
 from Interfaz.VentanaConfiguracion import VentanaConfiguración
 from Interfaz.VentanaGastoIngreso import VentanaGastoIngreso
 from baseDatos.usuario import Usuario
+from capaIntermedia.Modelo import Modelo
 
 
 class VentanaPrincipal:
-    def __init__(self, usuario: Usuario):
-        self.ventana = tk.Tk()
+    def __init__(self, ventana, usuario: Usuario):
+        self.ventana = ventana
         self.ventana.title('VentanaPrincipal')
         self.ventana.geometry('800x600')
         self.ventana.config(bg='#fcfcfc')
@@ -93,16 +96,17 @@ class VentanaPrincipal:
         boton_configuracion.pack(fill=tk.X, padx=10, pady=10)
         boton_configuracion.bind("<Return>", (lambda event: self.configuracion()))
 
-        self.ventana.mainloop()
-
     def establecerLiminte(self):
         VentanaLimite()
 
     def verTransacciones(self):
-        VentanaTransacciones()
+        self.newWindow = tk.Toplevel(self.ventana)
+        self.app = VentanaTransacciones(self.newWindow, self.usuario)
+
 
     def categorias(self):
-        VentanaCategorias()
+        self.newWindow = tk.Toplevel(self.ventana)
+        self.app = VentanaCategorias(self.newWindow, self.usuario)
 
     def configuracion (self):
         VentanaConfiguración()

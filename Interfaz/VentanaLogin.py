@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 import util.generic as utl
 from Interfaz.VentanasRegistro import VentanaRegistro
 from Interfaz.VentanaPrincipal import VentanaPrincipal
-from Interfaz.capaIntermedia.Modelo import Modelo
+from capaIntermedia.Modelo import Modelo
 
 class VentanaLogin:
     def __init__(self):
@@ -68,7 +68,10 @@ class VentanaLogin:
             usuario_conectado = Modelo().usuarioconectado(self.correo.get(), self.contrasenna.get())
             messagebox.showinfo(message="Bienvenido " + usuario_conectado.nombre, title="Mensaje")
             self.ventana.destroy()
-            VentanaPrincipal(usuario_conectado)
+
+            root =tk.Tk()
+            VentanaPrincipal(root, usuario_conectado)
+            root.mainloop()
 
 
         else:
