@@ -39,21 +39,21 @@ class VentanaPrincipal:
         label_logo = tk.Label(frame_logo, image=self.logo, bg='#fcfcfc', anchor="center")
         label_logo.grid(row=0, column=0,  pady=10, padx=10)
 
-        label = tk.Label(frame_logo, text="ECO-GASTOS", font=('Times', 15, 'bold'), fg="#175183", bg='#fcfcfc', anchor="center")
+        label = tk.Label(frame_logo, text="ECO-GASTOS", font=('Times', 15, 'bold'), fg="#175183", bd=0, bg='#fcfcfc', anchor="center")
         label.grid(row=1, column=0, pady=10, padx=10)
 
         # frame_titulo 0,1
         frame_titulo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_titulo.grid(row=0, column=1, pady=20, padx=20)
         # Label para el texto de bienvenida (Título)
-        label_titulo = tk.Label(frame_titulo, text=f"{self.usuario.nombre}", font=('Helvetica', 20), bg='#fcfcfc', anchor="center")
+        label_titulo = tk.Label(frame_titulo, text=f"{self.usuario.nombre}", font=('Helvetica', 20), bd=0, bg='#fcfcfc', anchor="center")
         label_titulo.grid(row=0, column=1, pady=20, padx=20)
 
         #frame_configuracion 0,2
         frame_configuracion = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_configuracion.grid(row=0, column=2, padx=10, pady=10)
         #boton_configuración
-        boton_configuracion = tk.Button(frame_configuracion, text='Configuración', font=('Helvetica', 15), bg='#808080', fg='#fff', command=self.configuracion)
+        boton_configuracion = tk.Button(frame_configuracion, text='Configuración', font=('Helvetica', 15), bd=0, bg='#808080', fg='#fff', command=self.configuracion)
         boton_configuracion.pack(fill=tk.X, padx=10, pady=10)
         boton_configuracion.bind("<Return>", (lambda event: self.configuracion()))
 
@@ -68,7 +68,7 @@ class VentanaPrincipal:
         frame_establecer_límite = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_establecer_límite.grid(row=2, column=0, padx=10, pady=10, sticky="w")
         # boton_limite
-        boton_establecer_limite = tk.Button(frame_establecer_límite, text='Establecer Límite', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.establecerLiminte)
+        boton_establecer_limite = tk.Button(frame_establecer_límite, text='Establecer Límite', font=('Helvetica', 15), bg='#3a7ff6', bd=0, fg='#fff', command=self.establecerLiminte)
         boton_establecer_limite.pack(fill=tk.X, padx=10, pady=10)
         boton_establecer_limite.bind("<Return>", (lambda event: self.establecerLiminte()))
 
@@ -76,7 +76,7 @@ class VentanaPrincipal:
         frame_refrescar = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_refrescar.grid(row=2, column=1, padx=10, pady=10)
         #botón refrescar
-        boton_refrescar = tk.Button(frame_refrescar, text='Refrescar', font=('Helvetica', 15), bg='#CBA135', fg='#fff', command=self.refrescar)
+        boton_refrescar = tk.Button(frame_refrescar, text='Refrescar', font=('Helvetica', 15), bg='#CBA135', bd=0, fg='#fff', command=self.refrescar)
         boton_refrescar.pack(fill=tk.X, padx=10, pady=10)
         boton_refrescar.bind("<Return>", (lambda event: self.refrescar()))
 
@@ -84,7 +84,7 @@ class VentanaPrincipal:
         frame_ver_transacciones = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_ver_transacciones.grid(row=2, column=2, padx=10, pady=10)
         #boton_transacciones
-        boton_ver_transacciones = tk.Button(frame_ver_transacciones, text='Transacciones', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.verTransacciones)
+        boton_ver_transacciones = tk.Button(frame_ver_transacciones, text='Transacciones', font=('Helvetica', 15), bg='#3a7ff6', bd=0, fg='#fff', command=self.verTransacciones)
         boton_ver_transacciones.pack(fill=tk.X, padx=10, pady=10)
         boton_ver_transacciones.bind("<Return>", (lambda event: self.verTransacciones()))
 
@@ -92,7 +92,7 @@ class VentanaPrincipal:
         frame_gasto = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_gasto.grid(row=3, column=0, padx=10, pady=10)
         # boton_gasto
-        boton_gasto = tk.Button(frame_gasto, text='Agregar Gasto', font=('Helvetica', 15), bg='red', fg='#fff', command=self.gasto)
+        boton_gasto = tk.Button(frame_gasto, text='Agregar Gasto', font=('Helvetica', 15), bg='red', bd=0, fg='#fff', command=self.gasto)
         boton_gasto.pack(fill=tk.X, padx=10, pady=10)
         boton_gasto.bind("<Return>", (lambda event: self.gasto()))
 
@@ -100,7 +100,7 @@ class VentanaPrincipal:
         frame_categorias = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_categorias.grid(row=3, column=1, padx=10, pady=10)
         # boton_categorias
-        boton_categorias = tk.Button(frame_categorias, text='Categorías', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.categorias)
+        boton_categorias = tk.Button(frame_categorias, text='Categorías', font=('Helvetica', 15), bg='#3a7ff6', bd=0, fg='#fff', command=self.categorias)
         boton_categorias.pack(fill=tk.X, padx=10, pady=10)
         boton_categorias.bind("<Return>", (lambda event: self.categorias()))
 
@@ -108,7 +108,7 @@ class VentanaPrincipal:
         frame_ingreso= tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_ingreso.grid(row=3, column=2, padx=10, pady=10)
         # boton_ingreso
-        boton_ingreso = tk.Button(frame_ingreso, text='Agregar Ingreso', font=('Helvetica', 15), bg='#006400', fg='#fff', command=self.ingreso)
+        boton_ingreso = tk.Button(frame_ingreso, text='Agregar Ingreso', font=('Helvetica', 15), bg='#006400', bd=0, fg='#fff', command=self.ingreso)
         boton_ingreso.pack(fill=tk.X, padx=10, pady=10)
         boton_ingreso.bind("<Return>", (lambda event: self.ingreso()))
 

@@ -28,10 +28,9 @@ class VentanaLimite:
         self.seleccion['values'] = Modelo().verCategoriasCompleto(usuario)
         self.seleccion.grid(row=2, column=2, padx=10, pady=10)
 
-        boton_aplicarLimite = tk.Button(self.frame, text='Crear Límite', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.realizarLimite)
+        boton_aplicarLimite = tk.Button(self.frame, text='Crear Límite', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', bd=0, command=self.realizarLimite)
         boton_aplicarLimite.grid(row=2, column=3,  padx=10, pady=10)
         boton_aplicarLimite.bind("<Return>", (lambda event: self.realizarLimite()))
-
 
         label_titulo = tk.Label(self.frame, text="Tus Limites actuales", font=('Helvetica', 20), anchor="w")
         label_titulo.grid(row=4, column=0, pady=10, padx=10, columnspan=3)
