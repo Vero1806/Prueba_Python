@@ -221,8 +221,8 @@ class Database():
             return e
 
         try:
-            cursor.execute('INSERT INTO limites (idusuario, limite) VALUES (%s, %s)',
-                           (limite.idusuario, limite.limite))
+            cursor.execute('INSERT INTO limites (idusuario, limite, idcategoria) VALUES (%s, %s, %s)',
+                           (limite.idusuario, limite.limite, limite.idcategoria))
             db_connection.commit()
 
         except Exception as e:
@@ -232,7 +232,7 @@ class Database():
             cursor.close()
             db_connection.close()
 
-    def select_limite(self, usuario: Usuario):
+    def select_limite_idcategoria(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
             cursor = db_connection.cursor()
@@ -241,9 +241,9 @@ class Database():
             return e
 
         try:
-            cursor.execute('SELECT limite from limites where idusuario = %s',
+            cursor.execute('SELECT idcategoria from limites where idusuario = %s',
                            (usuario.idusuario))
-            resultado = cursor.fetchone()
+            resultado = cursor.fetchall()
 
         except Exception as e:
             return e

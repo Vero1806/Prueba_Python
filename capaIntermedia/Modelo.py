@@ -130,5 +130,22 @@ class Modelo():
 
         return listaLimites
 
+    @staticmethod
+    def ver_limite_idcategoria(usuario: Usuario):
+        db = Database()
+        resultado = db.select_limite_idcategoria(usuario.idusuario)
+        listaIdCategorias = []
+        for elemento in resultado:
+            listaIdCategorias.append(elemento)
 
+        return listaIdCategorias
+
+    @staticmethod
+    def insertar_limite(usuario: Usuario, limite, idcategoria):
+        db = Database()
+        resultado = db.insert_limite(usuario.idusuario, limite, idcategoria)
+        if resultado is not None:
+            return True
+        else:
+            return False
 

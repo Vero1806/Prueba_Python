@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from capaIntermedia.Modelo import Modelo
 
 class VentanaLimite:
@@ -28,7 +28,7 @@ class VentanaLimite:
         self.seleccion['values'] = Modelo().verCategoriasCompleto(usuario)
         self.seleccion.grid(row=2, column=2, padx=10, pady=10)
 
-        boton_aplicarLimite = tk.Button(self.frame, text="Aplicar Límite", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.realizarLimite)
+        boton_aplicarLimite = tk.Button(self.frame, text='Crear Límite', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.realizarLimite)
         boton_aplicarLimite.grid(row=2, column=3,  padx=10, pady=10)
         boton_aplicarLimite.bind("<Return>", (lambda event: self.realizarLimite()))
 
@@ -43,4 +43,24 @@ class VentanaLimite:
             label_tran.grid(row=i+5, column=0, pady=10, padx=20, columnspan=3)
 
     def realizarLimite(self):
-        pass
+        limite = self.cuadro_limite.get()
+
+        categoria = self.seleccion.get()
+        idyNombre_categoria = categoria.split()
+        idcategorias_del_usuario = Modelo().ver_limite_idcategoria(self.usuario)
+        print(type(idcategorias_del_usuario))
+
+        comprobarId = int(idyNombre_categoria[0])
+
+        if not int(comprobarId) in idcategorias_del_usuario:
+            crearLimite = Modelo().insertar_limite(self.usuario.idusuario, limite, idyNombre_categoria[0])
+
+            if not crearLimite:
+                messagebox.showinfo(message="Límite creado correctamente", title="Mensaje")
+                self.ventana.destroy()
+            else:
+                messagebox.showinfo(message="Ha surgido un error al crear el límite", title="Mensaje")
+
+        elif idyNombre_categoria[0] in idcategorias_del_usuario:
+
+            pass #función update

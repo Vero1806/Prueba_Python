@@ -1,8 +1,9 @@
 class Limite:
-    def __init__(self, idusuario, limite, idlimite = None):
+    def __init__(self, idusuario, limite, idcategoria, idlimite = None):
         self.__idlimite = idlimite
         self.__idusuario = idusuario
         self.__limite = limite
+        self.__idcategoria = idcategoria
 
     @property
     def idlimite(self):
@@ -26,3 +27,11 @@ class Limite:
     @limite.setter
     def limite(self, nuevo_limite):
         self.__limite = nuevo_limite
+
+    @property
+    def idcategoria(self):
+        return self.__idcategoria
+
+    @limite.setter
+    def limite(self, nuevo_idcategoria):
+        self.__idcategoria = nuevo_idcategoria

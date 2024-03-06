@@ -47,7 +47,7 @@ class VentanaRegistro:
         self.contrasenna.pack(fill=tk.X, padx=20, pady=10)
         self.contrasenna.config(show="*")
 
-        inicio = tk.Button(frame_form_fill, text="Registrar", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.register)
+        inicio = tk.Button(frame_form_fill, text="Registar", font=('Times', 15), bg='#3a7ff6', bd=0, fg='#fff', command=self.register)
         inicio.pack(fill=tk.X, padx=20, pady=20)
         inicio.bind("<Return>", (lambda event: self.register()))
 

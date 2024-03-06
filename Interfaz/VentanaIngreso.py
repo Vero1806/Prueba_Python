@@ -36,7 +36,7 @@ class VentanaIngreso:
         self.seleccion['values'] = Modelo().verCategoriasCompleto(usuario)
         self.seleccion.grid(row=2, column=3, padx=10, pady=10)
 
-        self.boton_ingreso = tk.Button(self.frame, text="Realizar Ingreso", font=('Helvetical', 15), bg='#81ed2c', bd=0, fg="#fff", command=self.realizarIngreso)
+        self.boton_ingreso = tk.Button(self.frame, text='Realizar Ingreso', font=('Helvetica', 15), bg='#006400', fg='#fff', command=self.realizarIngreso)
         self.boton_ingreso.grid(row=3, column=3, padx=10, pady=10)
         self.boton_ingreso.bind("<Return>", (lambda event: self.realizarIngreso()))
 
