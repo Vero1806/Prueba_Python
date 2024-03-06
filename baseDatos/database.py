@@ -132,7 +132,7 @@ class Database():
             return e
 
         try:
-            cursor.execute('SELECT nombre, idcategoria FROM categorias WHERE idusuario is null UNION SELECT nombre, idcategoria FROM categorias WHERE idusuario = %s',
+            cursor.execute('SELECT idcategoria, nombre FROM categorias WHERE idusuario is null UNION SELECT idcategoria, nombre FROM categorias WHERE idusuario = %s',
                            (usuario.idusuario))
             resultado = cursor.fetchall()
 

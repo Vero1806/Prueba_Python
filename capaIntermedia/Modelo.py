@@ -76,7 +76,7 @@ class Modelo():
         return listaCat
 
     @staticmethod
-    def verCategoriasCompletonombre(usuario: Usuario):
+    def verCategoriasCompleto(usuario: Usuario):
         db = Database()
         arrayCat = db.select_categoria_genericaYpropia(usuario)
         listaCat_nombre = []
@@ -86,7 +86,7 @@ class Modelo():
         return listaCat_nombre
 
     @staticmethod
-    def verCategoriasCompletoid(usuario: Usuario):
+    def verCategoriasCompletonombre(usuario: Usuario):
         db = Database()
         arrayCat = db.select_categoria_genericaYpropia(usuario)
         listaCat_id = []
@@ -112,9 +112,9 @@ class Modelo():
         return resultado
 
     @staticmethod
-    def insertargasto(usuario: Usuario, nombreCategoria, concepto, cantidad):
+    def insertar_gasto_ingreso(usuario: Usuario, nombreCategoria, concepto, cantidad):
 
-        gasto = Transaccion(usuario.idusuario, nombreCategoria, concepto, -float(cantidad))
+        gasto = Transaccion(usuario.idusuario, nombreCategoria, concepto, cantidad)
         db = Database()
         resultado = db.insert_transaccion(gasto)
         if resultado is not None:

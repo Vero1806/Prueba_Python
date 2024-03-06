@@ -1,7 +1,6 @@
 import tkinter as tk
 import util.generic as utl
 
-
 class VentanaConfiguracion:
     def __init__(self, ventana, usuario):
         self.ventana = ventana
@@ -29,4 +28,8 @@ class VentanaConfiguracion:
     def cambiarContrasenna(self):
         pass
     def reiniciar(self):
-       pass
+        self.ventana.destroy()
+
+        #from main import VentanaLogin
+        #VentanaLogin()
+
