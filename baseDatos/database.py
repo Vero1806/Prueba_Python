@@ -241,9 +241,31 @@ class Database():
             return e
 
         try:
-            cursor.execute('SELECT limite from limite where idusuario = %s',
+            cursor.execute('SELECT limite from limites where idusuario = %s',
                            (usuario.idusuario))
             resultado = cursor.fetchone()
+
+        except Exception as e:
+            return e
+
+        finally:
+            cursor.close()
+            db_connection.close()
+
+        return resultado
+
+    def select_limite_categoria(self, usuario: Usuario):
+        try:
+            db_connection = self.get_conexion()
+            cursor = db_connection.cursor()
+
+        except Exception as e:
+            return e
+
+        try:
+            cursor.execute('select categorias.nombre, limites.limite from limites inner join categorias on limites.idcategoria = categorias.idcategoria where limites.idusuario = %s',
+                           (usuario.idusuario))
+            resultado = cursor.fetchall()
 
         except Exception as e:
             return e

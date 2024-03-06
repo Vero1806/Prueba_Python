@@ -96,8 +96,6 @@ class Modelo():
 
         return listaCat_id
 
-
-
     @staticmethod
     def insertcategorias(nombre, usuario: Usuario):
         categoria = Categoria(nombre, usuario.idusuario)
@@ -121,3 +119,16 @@ class Modelo():
             return True
         else:
             return False
+
+    @staticmethod
+    def ver_limite_categoria (usuario: Usuario):
+        db = Database()
+        resultado = db.select_limite_categoria(usuario)
+        listaLimites = []
+        for elemento in resultado:
+            listaLimites.append(f"Categoria: {elemento[0]}, Cantidad: {elemento[1]}")
+
+        return listaLimites
+
+
+

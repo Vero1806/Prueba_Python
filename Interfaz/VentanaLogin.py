@@ -23,7 +23,7 @@ class VentanaLogin:
         frame_logo.grid_rowconfigure(1, weight=100)
 
         label = tk.Label(frame_logo, text="ECO-GASTOS", font=('Times', 25, 'bold'), fg="#fcfcfc", bg='#3a7ff6', anchor="center")
-        label.grid(row=0, column=0, pady=10, padx=10)
+        label.grid(row=0, column=0, pady=50, padx=10)
 
         label_logo = tk.Label(frame_logo, image=logo, bg='#3a7ff6')
         label_logo.grid(row=1, column=0)

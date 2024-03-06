@@ -3,5 +3,3 @@ from Interfaz.VentanaLogin import VentanaLogin
 from Interfaz.VentanaPrincipal import VentanaPrincipal
 
 VentanaLogin()
-
-

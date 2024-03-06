@@ -39,6 +39,9 @@ class VentanaPrincipal:
         label_logo = tk.Label(frame_logo, image=self.logo, bg='#fcfcfc', anchor="center")
         label_logo.grid(row=0, column=0,  pady=10, padx=10)
 
+        label = tk.Label(frame_logo, text="ECO-GASTOS", font=('Times', 15, 'bold'), fg="#fcfcfc", bg='#175183', anchor="center")
+        label.grid(row=1, column=0, pady=10, padx=10)
+
         # frame_titulo 0,1
         frame_titulo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_titulo.grid(row=0, column=1, pady=20, padx=20)
