@@ -34,7 +34,7 @@ class VentanaGasto:
         self.seleccion['values'] = Modelo().verCategoriasCompleto(usuario)
         self.seleccion.grid(row=2, column=3, padx=10, pady=10)
 
-        self.boton_gasto = tk.Button(self.frame, text='Agregar Categoria', font=('Helvetica', 15), bg='red', fg='#fff', command=self.realizarGasto)
+        self.boton_gasto = tk.Button(self.frame, text='Agregar Categoria', font=('Helvetica', 15), bg='red', bd=0, fg='#fff', command=self.realizarGasto)
         self.boton_gasto.grid(row=3, column=3, padx=10, pady=10)
         self.boton_gasto.bind("<Return>", (lambda event: self.realizarGasto()))
 

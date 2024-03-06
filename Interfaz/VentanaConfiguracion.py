@@ -41,7 +41,7 @@ class VentanaConfiguracion:
         self.cuadro_ContraNueva2.grid(row=5, column=1, padx=0, pady=10, columnspan=2)
         self.cuadro_ContraNueva2.config(show="*")
 
-        boton_contrasenna = tk.Button(self.frame, text='Cambiar Contraseña', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.cambiarContrasenna)
+        boton_contrasenna = tk.Button(self.frame, text='Cambiar Contraseña', font=('Helvetica', 15), bd=0, bg='#3a7ff6', fg='#fff', command=self.cambiarContrasenna)
         boton_contrasenna.grid(row=6, column=1, padx=10, pady=10)
         boton_contrasenna.bind("<Return>", (lambda event: self.cambiarContrasenna()))
 

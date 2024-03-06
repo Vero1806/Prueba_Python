@@ -48,9 +48,9 @@ class VentanaLimite:
         categoria = self.seleccion.get()
         idyNombre_categoria = categoria.split()
         idcategorias_del_usuario = Modelo().ver_limite_idcategoria(self.usuario)
-        print(type(idcategorias_del_usuario))
 
         comprobarId = int(idyNombre_categoria[0])
+
 
         if not int(comprobarId) in idcategorias_del_usuario:
             crearLimite = Modelo().insertar_limite(self.usuario.idusuario, limite, idyNombre_categoria[0])

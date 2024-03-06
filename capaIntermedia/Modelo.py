@@ -133,7 +133,7 @@ class Modelo():
     @staticmethod
     def ver_limite_idcategoria(usuario: Usuario):
         db = Database()
-        resultado = db.select_limite_idcategoria(usuario.idusuario)
+        resultado = db.select_limite_idcategoria(usuario)
         listaIdCategorias = []
         for elemento in resultado:
             listaIdCategorias.append(elemento)

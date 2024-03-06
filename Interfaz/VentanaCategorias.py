@@ -30,7 +30,7 @@ class VentanaCategorias:
         self.cuadro_texto.grid(row=2, column=2, padx=20, pady=20)
 
 
-        boton_agregarCategoria = tk.Button(self.frame, text='Agregar Categoría', font=('Helvetica', 15), bg='#3a7ff6', fg='#fff', command=self.insertarcategoria)
+        boton_agregarCategoria = tk.Button(self.frame, text='Agregar Categoría', font=('Helvetica', 15), bg='#3a7ff6', bd=0, fg='#fff', command=self.insertarcategoria)
         boton_agregarCategoria.grid(row=3, column=2, padx=10, pady=10)
         boton_agregarCategoria.bind("<Return>", (lambda event: self.insertarcategoria()))
 
