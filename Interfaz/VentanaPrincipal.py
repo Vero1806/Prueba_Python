@@ -19,7 +19,7 @@ class VentanaPrincipal:
         self.ventana.geometry('800x600')
         self.ventana.config(bg='#fcfcfc')
         self.ventana.resizable(width=0, height=0) #No permite cambiar el tamaño de la ventana
-        utl.centrar_ventana(self.ventana, 800, 600)
+        utl.centrar_ventana(self.ventana, 700, 500)
         self.ventana.grid_columnconfigure(0, weight=1)
         self.ventana.grid_columnconfigure(1, weight=5)
         self.ventana.grid_columnconfigure(2, weight=1)
@@ -39,7 +39,7 @@ class VentanaPrincipal:
         label_logo = tk.Label(frame_logo, image=self.logo, bg='#fcfcfc', anchor="center")
         label_logo.grid(row=0, column=0,  pady=10, padx=10)
 
-        label = tk.Label(frame_logo, text="ECO-GASTOS", font=('Times', 15, 'bold'), fg="#fcfcfc", bg='#175183', anchor="center")
+        label = tk.Label(frame_logo, text="ECO-GASTOS", font=('Times', 15, 'bold'), fg="#175183", bg='#fcfcfc', anchor="center")
         label.grid(row=1, column=0, pady=10, padx=10)
 
         # frame_titulo 0,1
