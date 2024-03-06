@@ -31,15 +31,18 @@ class VentanaConfiguracion:
 
         self.cuadro_ContraActual = tk.Entry(self.frame, font=('Helvetica', 12), width=20)
         self.cuadro_ContraActual.grid(row=3, column=1, padx=0, pady=10)
+        self.cuadro_ContraActual.config(show="*")
 
         self.cuadro_ContraNueva = tk.Entry(self.frame, font=('Helvetica', 12), width=20)
         self.cuadro_ContraNueva.grid(row=4, column=1, padx=0, pady=10)
+        self.cuadro_ContraNueva.config(show="*")
 
         self.cuadro_ContraNueva2 = tk.Entry(self.frame, font=('Helvetica', 12), width=20)
-        self.cuadro_ContraNueva2.grid(row=5, column=1, padx=0, pady=10)
+        self.cuadro_ContraNueva2.grid(row=5, column=1, padx=0, pady=10, columnspan=2)
+        self.cuadro_ContraNueva2.config(show="*")
 
         boton_contrasenna = tk.Button(self.frame, text="Actualizar Contraseña", font=('Times', 15), bg='#3a7ff6', bd=0, fg="#fff", command=self.cambiarContrasenna)
-        boton_contrasenna.grid(row=6, column=1, padx=10, pady=10)
+        boton_contrasenna.grid(row=6, column=0, padx=10, pady=10)
         boton_contrasenna.bind("<Return>", (lambda event: self.cambiarContrasenna()))
 
         #boton_reiniciar = tk.Button(self.frame, text="Cerrar Sesión", font=('Times', 15), bg='#808080', bd=0, fg="#fff", command=self.reiniciar)
@@ -47,12 +50,24 @@ class VentanaConfiguracion:
         #boton_reiniciar.bind("<Return>", (lambda event: self.reiniciar()))
 
     def cambiarContrasenna(self):
-        pass
+        ContraActual = self.cuadro_ContraActual.get()
+        ContraNueva = self.cuadro_ContraNueva.get()
+        ContraNueva2 = self.cuadro_ContraNueva2.get()
 
-    def reiniciar(self):
-        messagebox.showinfo(message="Hasta la próxima", title="Mensaje")
-        self.ventana.destroy()
+        if ContraActual != self.usuario.contrasenna:
+            messagebox.showinfo(message="La contraseña actual no es correcta", title="Mensaje")
+        else:
+            if ContraActual == ContraNueva:
+                messagebox.showinfo(message="La contraseña actual coincide con la nueva contraseña", title="Mensaje")
+            elif ContraNueva != ContraNueva2:
+                messagebox.showinfo(message="La nueva contraseña no coincide", title="Mensaje")
+            else:
+                pass
 
+
+    #def reiniciar(self):
+        #messagebox.showinfo(message="Hasta la próxima", title="Mensaje")
+        #self.ventana.destroy()
         #No funciona por la forma de trabajar de Tkinter así que esto cierra la app
         #from main import VentanaLogin
         #VentanaLogin()

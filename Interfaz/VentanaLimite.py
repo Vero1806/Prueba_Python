@@ -1,10 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-
-import util.generic as utl
-from Interfaz.VentanaVerLimites import VentanaVerLimites
 from capaIntermedia.Modelo import Modelo
-
 
 class VentanaLimite:
     def __init__(self, ventana, usuario):
@@ -48,10 +44,3 @@ class VentanaLimite:
 
     def realizarLimite(self):
         pass
-
-    def verLimites(self):
-        self.newWindow = tk.Toplevel(self.ventana)
-        self.app = VentanaVerLimites(self.newWindow, self.usuario)
-
-
-
