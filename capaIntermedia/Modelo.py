@@ -149,3 +149,8 @@ class Modelo():
         else:
             return False
 
+    @staticmethod
+    def actualizar_saldo(usuario: Usuario):
+        db = Database()
+        resultado = db.total_transacciones(usuario)
+        return resultado[0]

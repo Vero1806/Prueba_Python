@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+
+from baseDatos.categorias import Categoria
 from capaIntermedia.Modelo import Modelo
 
 class VentanaLimite:
@@ -46,10 +48,11 @@ class VentanaLimite:
 
         categoria = self.seleccion.get()
         idyNombre_categoria = categoria.split()
+        categoriaSeleccionada = Categoria.idcategoria = idyNombre_categoria[0]
+
         idcategorias_del_usuario = Modelo().ver_limite_idcategoria(self.usuario)
 
         comprobarId = int(idyNombre_categoria[0])
-
 
         if not int(comprobarId) in idcategorias_del_usuario:
             crearLimite = Modelo().insertar_limite(self.usuario.idusuario, limite, idyNombre_categoria[0])

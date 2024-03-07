@@ -61,7 +61,7 @@ class VentanaPrincipal:
         frame_saldo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_saldo.grid(row=1, column=1, padx=10, pady=10)
         # Label saldo
-        label_saldo = tk.Label(frame_saldo, text=f"Saldo actual: {self.usuario.saldo}€", font=('Helvetica', 15), bg='#fcfcfc', anchor="n")
+        label_saldo = tk.Label(frame_saldo, text=f"Saldo actual: {str(Modelo().actualizar_saldo(self.usuario))}€", font=('Helvetica', 15), bg='#fcfcfc', anchor="n")
         label_saldo.grid(row=1, column=1, pady=10, padx=10)
 
         #frame_limite 2,0
@@ -138,8 +138,7 @@ class VentanaPrincipal:
         self.app = VentanaIngreso(self.newWindow, self.usuario)
 
     def refrescar(self):
-        esteUsuario = self.usuario
         self.ventana.destroy()
         root = tk.Tk()
-        VentanaPrincipal(root, esteUsuario)
+        VentanaPrincipal(root, self.usuario)
         root.mainloop()

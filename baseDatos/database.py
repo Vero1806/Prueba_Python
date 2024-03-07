@@ -177,7 +177,7 @@ class Database():
         try:
             cursor.execute(
                 'SELECT categorias.nombre, transacciones.concepto, transacciones.cantidad, transacciones.fecha from transacciones '
-                'inner join categorias on transacciones.idcategoria = categorias.idcategoria where transacciones.idusuario = %s',
+                'inner join categorias on transacciones.idcategoria = categorias.idcategoria where transacciones.idusuario = %s order by fecha desc',
                 (usuario.idusuario))
             resultado = cursor.fetchall()
 
@@ -201,7 +201,7 @@ class Database():
         try:
             cursor.execute('SELECT SUM(cantidad) FROM transacciones WHERE idusuario = %s',
                            (usuario.idusuario))
-            resultado = cursor.fetchall()
+            resultado = cursor.fetchone()
 
         except Exception as e:
             return e
