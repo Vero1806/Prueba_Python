@@ -296,3 +296,26 @@ class Database():
             db_connection.close()
 
         return resultado
+
+    def select_categoria_suma_limite(self, usuario: Usuario):
+        try:
+            db_connection = self.get_conexion()
+            cursor = db_connection.cursor()
+
+        except Exception as e:
+            return e
+
+        try:
+            cursor.execute('SELECT c.nombre AS nombre_categoria, t.suma_cantidades, l.limite FROM limites l INNER JOIN categorias c ON l.idcategoria = c.idcategoria LEFT JOIN (SELECT idcategoria, SUM(cantidad) AS suma_cantidades FROM transacciones GROUP BY idcategoria) t ON l.idcategoria = t.idcategoria WHERE l.idusuario = %s ORDER BY t.suma_cantidades ASC LIMIT 5',
+                           (usuario.idusuario))
+            resultado = cursor.fetchall()
+
+        except Exception as e:
+            print(f"Error al ejecutar la consulta: {e}")
+            return []
+
+        finally:
+            cursor.close()
+            db_connection.close()
+
+        return resultado

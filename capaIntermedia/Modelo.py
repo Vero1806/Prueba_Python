@@ -157,3 +157,14 @@ class Modelo():
         db = Database()
         resultado = db.total_transacciones(usuario)
         return resultado[0]
+
+    @staticmethod
+    def ver_categoria_gasto_limite(usuario: Usuario):
+        db = Database()
+        resultado = db.select_categoria_suma_limite(usuario)
+        lista = []
+        for elemento in resultado:
+            lista.append(f"{elemento[0]}, {elemento[1]}, {elemento[2]}")
+
+        return lista
+
