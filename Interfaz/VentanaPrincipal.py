@@ -1,6 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
-
+from pathlib import Path
 import util.generic as utl
 from Interfaz.VentanaIngreso import VentanaIngreso
 from Interfaz.VentanaLimite import VentanaLimite
@@ -30,7 +29,7 @@ class VentanaPrincipal:
 
         self.usuario = usuario
 
-        self.logo = utl.leer_imagen("./util/logoBlanco.png", (100, 100))
+        self.logo = utl.leer_imagen("logoBlanco.png", (100, 100))
 
         # frame_logo 0,0
         frame_logo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')

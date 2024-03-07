@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+from pathlib import Path
+
+import Interfaz
 import util.generic as utl
 from Interfaz.VentanasRegistro import VentanaRegistro
 from Interfaz.VentanaPrincipal import VentanaPrincipal
@@ -14,7 +17,8 @@ class VentanaLogin:
         self.ventana.resizable(width=0, height=0)
         utl.centrar_ventana(self.ventana, 800, 600)
 
-        logo = utl.leer_imagen("./util/logo.png", (200, 200))
+
+        logo = utl.leer_imagen("logo.png",(200, 200))
         # frame_logo
         frame_logo = tk.Frame(self.ventana, bd=0, width=200, relief=tk.SOLID, padx=10, pady=10, bg='#3a7ff6')
         frame_logo.pack(side="left", expand=tk.YES, fill=tk.BOTH)
