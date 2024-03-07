@@ -232,6 +232,27 @@ class Database():
             cursor.close()
             db_connection.close()
 
+    def update_limite(self, limite: Limite):
+        try:
+            db_connection = self.get_conexion()
+            cursor = db_connection.cursor()
+
+        except Exception as e:
+            return e
+
+        try:
+            cursor.execute('UPDATE limites SET limite = %s WHERE idusuario = %s AND idcategoria = %s',
+                           (limite.limite, limite.idusuario, limite.idcategoria))
+            db_connection.commit()
+
+        except Exception as e:
+            return e
+
+        finally:
+            cursor.close()
+            db_connection.close()
+
+
     def select_limite_idcategoria(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()

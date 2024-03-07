@@ -57,8 +57,9 @@ class Modelo():
         return listaTran
 
     @staticmethod
-    def realizartransaccion(idusuario, idcategoria, concepto, cantidad):
-        transaccion = Transaccion(idusuario, idcategoria, concepto, cantidad)
+    def insertar_transaccion(usuario: Usuario, nombreCategoria, concepto, cantidad):
+
+        transaccion = Transaccion(usuario.idusuario, nombreCategoria, concepto, cantidad)
         db = Database()
         resultado = db.insert_transaccion(transaccion)
         if resultado is not None:
@@ -110,17 +111,6 @@ class Modelo():
         return resultado
 
     @staticmethod
-    def insertar_gasto_ingreso(usuario: Usuario, nombreCategoria, concepto, cantidad):
-
-        gasto = Transaccion(usuario.idusuario, nombreCategoria, concepto, cantidad)
-        db = Database()
-        resultado = db.insert_transaccion(gasto)
-        if resultado is not None:
-            return True
-        else:
-            return False
-
-    @staticmethod
     def ver_limite_categoria (usuario: Usuario):
         db = Database()
         resultado = db.select_limite_categoria(usuario)
@@ -136,14 +126,27 @@ class Modelo():
         resultado = db.select_limite_idcategoria(usuario)
         listaIdCategorias = []
         for elemento in resultado:
-            listaIdCategorias.append(elemento)
+            listaIdCategorias.append(elemento[0])
 
         return listaIdCategorias
 
     @staticmethod
-    def insertar_limite(usuario: Usuario, limite, idcategoria):
+    def insertar_limite(usuario: Usuario, cantidadlimite, idcategoria):
+        limite = Limite(usuario.idusuario, cantidadlimite, idcategoria)
+
         db = Database()
-        resultado = db.insert_limite(usuario.idusuario, limite, idcategoria)
+        resultado = db.insert_limite(limite)
+        if resultado is not None:
+            return True
+        else:
+            return False
+    @staticmethod
+    def actualizar_limite(usuario: Usuario, cantidadlimite, idcategoria):
+        limite = Limite(usuario.idusuario, cantidadlimite, idcategoria)
+
+        db = Database()
+        resultado = db.update_limite(limite)
+
         if resultado is not None:
             return True
         else:

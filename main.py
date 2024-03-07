@@ -1,6 +1,5 @@
-from Interfaz.VentanasRegistro import VentanaRegistro
 from Interfaz.VentanaLogin import VentanaLogin
-from Interfaz.VentanaPrincipal import VentanaPrincipal
 
-VentanaLogin()
+if __name__ =='__main__':
+    VentanaLogin()
 

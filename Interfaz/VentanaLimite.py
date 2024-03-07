@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+from tkinter.messagebox import YESNO
 
+from baseDatos import usuario
 from baseDatos.categorias import Categoria
 from capaIntermedia.Modelo import Modelo
 
@@ -44,18 +46,16 @@ class VentanaLimite:
             label_tran.grid(row=i+5, column=0, pady=10, padx=20, columnspan=3)
 
     def realizarLimite(self):
-        limite = self.cuadro_limite.get()
+        cantdadLimite = float(self.cuadro_limite.get())
 
         categoria = self.seleccion.get()
         idyNombre_categoria = categoria.split()
-        categoriaSeleccionada = Categoria.idcategoria = idyNombre_categoria[0]
+        comprobarId = int(idyNombre_categoria[0])
 
         idcategorias_del_usuario = Modelo().ver_limite_idcategoria(self.usuario)
 
-        comprobarId = int(idyNombre_categoria[0])
-
-        if not int(comprobarId) in idcategorias_del_usuario:
-            crearLimite = Modelo().insertar_limite(self.usuario.idusuario, limite, idyNombre_categoria[0])
+        if not comprobarId in idcategorias_del_usuario:
+            crearLimite = Modelo().insertar_limite(self.usuario, cantdadLimite, idyNombre_categoria[0])
 
             if not crearLimite:
                 messagebox.showinfo(message="Límite creado correctamente", title="Mensaje")
@@ -63,6 +63,13 @@ class VentanaLimite:
             else:
                 messagebox.showinfo(message="Ha surgido un error al crear el límite", title="Mensaje")
 
-        elif idyNombre_categoria[0] in idcategorias_del_usuario:
+        else:
+            pregutarActualizar = messagebox.askyesno(title="Mensaje de actualización", message="Ya tiene un limite creado para esta categoría. ¿Desea actualizarlo?")
+            if pregutarActualizar:
+                actualizarLimite = Modelo().actualizar_limite(self.usuario, cantdadLimite, idyNombre_categoria[0])
 
-            pass #función update
+                if not actualizarLimite:
+                    messagebox.showinfo(message="Límite actualizado correctamente", title="Mensaje")
+                    self.ventana.destroy()
+                else:
+                    messagebox.showinfo(message="Ha surgido un error al actualizar el límite", title="Mensaje")

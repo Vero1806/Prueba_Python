@@ -47,7 +47,7 @@ class VentanaIngreso:
         nombre_categoria = self.seleccion.get()
         idyNombre_categoria = nombre_categoria.split()
 
-        gastoRealizado = Modelo().insertar_gasto_ingreso(self.usuario, idyNombre_categoria[0], concepto, float(cantidad))
+        gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, float(cantidad))
 
         if not gastoRealizado:
             messagebox.showinfo(message="Ingreso realizada correctamente", title="Mensaje")
