@@ -166,8 +166,8 @@ class Modelo():
         lista_sin_none = []
         for elemento in resultado:
             if elemento[1] == None:
-                lista_con_none.append(f"{elemento[0]} | {float(0.00)} | {elemento[2]}")
+                lista_con_none.append(f"{elemento[0]} | {float(0.00)} | {float(elemento[2])}")
             else:
-                lista_sin_none.append(f"{elemento[0]} | {-float(elemento[1])} | {elemento[2]}")
+                lista_sin_none.append(f"{elemento[0]} | {-float(elemento[1])} | {float(elemento[2])}")
         return lista_sin_none + lista_con_none
 
