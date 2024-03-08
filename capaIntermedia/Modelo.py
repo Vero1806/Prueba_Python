@@ -171,3 +171,16 @@ class Modelo():
                 lista_sin_none.append(f"{elemento[0]} | {-float(elemento[1])} | {float(elemento[2])}")
         return lista_sin_none + lista_con_none
 
+
+    @staticmethod
+    def gestionar_categoria_gasto_limite(usuario: Usuario):
+        db = Database()
+        resultado = db.select_categoria_suma_limite(usuario)
+        lista_con_none = []
+        lista_sin_none = []
+        for elemento in resultado:
+            if elemento[1] == None:
+                lista_con_none.append((elemento[0], float(0.00), float(elemento[2])))
+            else:
+                lista_sin_none.append((elemento[0], -float(elemento[1]), float(elemento[2])))
+        return lista_sin_none + lista_con_none

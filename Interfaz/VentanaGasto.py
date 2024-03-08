@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+
 from capaIntermedia.Modelo import Modelo
 
 class VentanaGasto:
@@ -38,18 +39,46 @@ class VentanaGasto:
         self.boton_gasto.grid(row=3, column=3, padx=10, pady=10)
         self.boton_gasto.bind("<Return>", (lambda event: self.realizarGasto()))
 
-
     def realizarGasto(self):
         concepto = self.cuadro_concepto.get()
         cantidad = self.cuadro_cantidad.get()
         nombre_categoria = self.seleccion.get()
         idyNombre_categoria = nombre_categoria.split()
-        
-        gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
+        categorias_suma_limtes  = Modelo().gestionar_categoria_gasto_limite(self.usuario)
+        listaNombreCategoria = []
+        listaSuma = []
+        listaLiminte = []
+        for i, contenido in enumerate(categorias_suma_limtes):
+            listaNombreCategoria.append(contenido[0])
+            listaSuma.append(contenido[1])
+            listaLiminte.append(contenido[2])
 
-        if not gastoRealizado:
-            messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
-            self.ventana.destroy()
+        if idyNombre_categoria[1] in listaNombreCategoria:
+            indice = listaNombreCategoria.index(idyNombre_categoria[1])
+            if (float(listaSuma[indice])+float(cantidad)) > listaLiminte[indice]:
+                pregutarGastoSuperado = messagebox.askyesno(title="Mensaje", message=f"Has superado tu límite de {listaNombreCategoria[indice]}. ¿Desea hacer el gasto de todos modos?")
+                if pregutarGastoSuperado:
+                    gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
+                    if not gastoRealizado:
+                        messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+                        self.ventana.destroy()
+                    else:
+                        messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
+                else:
+                    messagebox.showinfo(message="El gasto no ha sido registrado", title="Mensaje")
+            else:
+                gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
+
+                if not gastoRealizado:
+                    messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+                    self.ventana.destroy()
+                else:
+                    messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
         else:
-            messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
-    
+            gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
+
+            if not gastoRealizado:
+                messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+                self.ventana.destroy()
+            else:
+                messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
