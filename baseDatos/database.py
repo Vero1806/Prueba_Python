@@ -306,8 +306,8 @@ class Database():
             return e
 
         try:
-            cursor.execute('SELECT c.nombre AS nombre_categoria, t.suma_cantidades, l.limite FROM limites l INNER JOIN categorias c ON l.idcategoria = c.idcategoria LEFT JOIN (SELECT idcategoria, SUM(cantidad) AS suma_cantidades FROM transacciones GROUP BY idcategoria) t ON l.idcategoria = t.idcategoria WHERE l.idusuario = %s ORDER BY t.suma_cantidades ASC LIMIT 5',
-                           (usuario.idusuario))
+            cursor.execute('SELECT c.nombre AS nombre_categoria, t.suma_cantidades, l.limite FROM limites l INNER JOIN categorias c ON l.idcategoria = c.idcategoria LEFT JOIN (SELECT idcategoria, SUM(cantidad) AS suma_cantidades FROM transacciones where idusuario = %s GROUP BY idcategoria) t ON l.idcategoria = t.idcategoria WHERE l.idusuario = %s ORDER BY t.suma_cantidades ASC',
+                           (usuario.idusuario, usuario.idusuario))
             resultado = cursor.fetchall()
 
         except Exception as e:
