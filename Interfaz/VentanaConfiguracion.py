@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
 
+from capaIntermedia.Modelo import Modelo
+
+
 class VentanaConfiguracion:
     def __init__(self, ventana, usuario):
         self.ventana = ventana
@@ -56,16 +59,17 @@ class VentanaConfiguracion:
 
         if ContraActual != self.usuario.contrasenna:
             messagebox.showinfo(message="La contraseña actual no es correcta", title="Mensaje")
+        elif ContraActual == ContraNueva:
+            messagebox.showinfo(message="La contraseña actual coincide con la nueva contraseña", title="Mensaje")
+        elif ContraNueva != ContraNueva2:
+            messagebox.showinfo(message="La nueva contraseña no coincide", title="Mensaje")
         else:
-            if ContraActual == ContraNueva:
-                messagebox.showinfo(message="La contraseña actual coincide con la nueva contraseña", title="Mensaje")
-            elif ContraNueva != ContraNueva2:
-                messagebox.showinfo(message="La nueva contraseña no coincide", title="Mensaje")
-            else:
-                pass
+            Modelo().actualizar_contra(ContraNueva, self.usuario)
+            messagebox.showinfo(message="La contraseña se ha actualizado correctamente", title="Mensaje")
+            self.ventana.destroy()
 
-
-    #def reiniciar(self):
+#Solución para import cíclico
+#def reiniciar(self):
         #messagebox.showinfo(message="Hasta la próxima", title="Mensaje")
         #self.ventana.destroy()
         #No funciona por la forma de trabajar de Tkinter así que esto cierra la app

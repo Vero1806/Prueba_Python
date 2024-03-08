@@ -184,3 +184,14 @@ class Modelo():
             else:
                 lista_sin_none.append((elemento[0], -float(elemento[1]), float(elemento[2])))
         return lista_sin_none + lista_con_none
+
+    @staticmethod
+    def actualizar_contra(contra, usuario: Usuario):
+
+        db = Database()
+        resultado = db.update_contrasenna(contra, usuario)
+
+        if resultado is not None:
+            return True
+        else:
+            return False

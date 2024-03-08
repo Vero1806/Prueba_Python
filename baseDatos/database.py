@@ -252,7 +252,6 @@ class Database():
             cursor.close()
             db_connection.close()
 
-
     def select_limite_idcategoria(self, usuario: Usuario):
         try:
             db_connection = self.get_conexion()
@@ -319,3 +318,23 @@ class Database():
             db_connection.close()
 
         return resultado
+
+    def update_contrasenna(self, newContrasenna, usuario: Usuario):
+        try:
+            db_connection = self.get_conexion()
+            cursor = db_connection.cursor()
+
+        except Exception as e:
+            return e
+
+        try:
+            cursor.execute('UPDATE usuarios SET contrasenna = %s WHERE idusuario = %s',
+                           (newContrasenna, usuario.idusuario))
+            db_connection.commit()
+
+        except Exception as e:
+            return e
+
+        finally:
+            cursor.close()
+            db_connection.close()
