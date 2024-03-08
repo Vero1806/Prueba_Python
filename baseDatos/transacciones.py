@@ -1,10 +1,9 @@
 class Transaccion:
-    def __init__(self, idusuario, idcategoria, concepto, cantidad, fecha,  idtransaccion = None):
+    def __init__(self, idusuario, idcategoria, concepto, cantidad, idtransaccion = None):
         self.idusuario = idusuario
         self.idcategoria = idcategoria
         self.concepto = concepto
         self.cantidad = cantidad
-        self.fecha = fecha
         self.idtransaccion = idtransaccion
 
     @property
@@ -34,13 +33,6 @@ class Transaccion:
     @cantidad.setter
     def cantidad(self, nuevo_cantidad):
         self.__cantidad = nuevo_cantidad
-
-    @property
-    def fecha(self):
-        return self.__fecha
-    @cantidad.setter
-    def cantidad(self, nuevo_fecha):
-        self.__fecha = nuevo_fecha
 
     @property
     def idtransaccion(self):
