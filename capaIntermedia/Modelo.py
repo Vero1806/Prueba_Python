@@ -52,7 +52,7 @@ class Modelo():
         listaTran = []
         for elemento in arrayTras:
             listaTran.append(
-                f"Categoria: {elemento[0]}, Concepto: {elemento[1]}, Cantidad: {elemento[2]}, fecha {elemento[3]}")
+                (elemento[0], str(elemento[1]), float(elemento[2]), elemento[3]))
 
         return listaTran
 
