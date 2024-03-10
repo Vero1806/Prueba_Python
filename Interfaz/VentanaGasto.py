@@ -44,7 +44,7 @@ class VentanaGasto:
         cantidad = self.cuadro_cantidad.get()
         nombre_categoria = self.seleccion.get()
         idyNombre_categoria = nombre_categoria.split()
-        categorias_suma_limtes  = Modelo().gestionar_categoria_gasto_limite(self.usuario)
+        categorias_suma_limtes = Modelo().gestionar_categoria_gasto_limite(self.usuario)
         listaNombreCategoria = []
         listaSuma = []
         listaLiminte = []
@@ -60,7 +60,7 @@ class VentanaGasto:
                 if pregutarGastoSuperado:
                     gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
                     if not gastoRealizado:
-                        messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+                        messagebox.showinfo(message="Gasto realizado correctamente", title="Mensaje")
                         self.ventana.destroy()
                     else:
                         messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
@@ -70,7 +70,7 @@ class VentanaGasto:
                 gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
 
                 if not gastoRealizado:
-                    messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+                    messagebox.showinfo(message="Gasto realizado correctamente", title="Mensaje")
                     self.ventana.destroy()
                 else:
                     messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")
@@ -78,7 +78,7 @@ class VentanaGasto:
             gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, -float(cantidad))
 
             if not gastoRealizado:
-                messagebox.showinfo(message="Gasto realizada correctamente", title="Mensaje")
+                messagebox.showinfo(message="Gasto realizado correctamente", title="Mensaje")
                 self.ventana.destroy()
             else:
                 messagebox.showinfo(message="Ha surgido un error al realizar el gasto", title="Mensaje")

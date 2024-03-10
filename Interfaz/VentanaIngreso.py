@@ -50,7 +50,7 @@ class VentanaIngreso:
         gastoRealizado = Modelo().insertar_transaccion(self.usuario, idyNombre_categoria[0], concepto, float(cantidad))
 
         if not gastoRealizado:
-            messagebox.showinfo(message="Ingreso realizada correctamente", title="Mensaje")
+            messagebox.showinfo(message="Ingreso realizado correctamente", title="Mensaje")
             self.ventana.destroy()
         else:
-            messagebox.showinfo(message="Ha surgido un error al realizar el Ingreso", title="Mensaje")
+            messagebox.showinfo(message="Ha surgido un error al realizar el ingreso", title="Mensaje")

@@ -156,7 +156,10 @@ class Modelo():
     def actualizar_saldo(usuario: Usuario):
         db = Database()
         resultado = db.total_transacciones(usuario)
-        return resultado[0]
+        if resultado[0] == None:
+            return 0.00
+        else:
+            return resultado[0]
 
     @staticmethod
     def ver_categoria_gasto_limite(usuario: Usuario):

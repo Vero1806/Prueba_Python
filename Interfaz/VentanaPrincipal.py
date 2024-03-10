@@ -60,7 +60,7 @@ class VentanaPrincipal:
         frame_saldo = tk.Frame(self.ventana, bd=0, relief=tk.SOLID, padx=10, pady=10, bg='#fcfcfc')
         frame_saldo.grid(row=1, column=1, padx=10, pady=10)
         # Label saldo
-        label_saldo = tk.Label(frame_saldo, text=f"Saldo actual: {str(Modelo().actualizar_saldo(self.usuario))}€", font=('Helvetica', 15), bg='#fcfcfc', anchor="n")
+        label_saldo = tk.Label(frame_saldo, text=f"Saldo actual: {str(Modelo().actualizar_saldo(self.usuario))} €", font=('Helvetica', 15), bg='#fcfcfc', anchor="n")
         label_saldo.grid(row=1, column=1, pady=10, padx=10)
         categorias_suma_limtes = Modelo().ver_categoria_gasto_limite(usuario)
         for i, contenido in enumerate(categorias_suma_limtes):
